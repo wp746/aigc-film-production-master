@@ -36,13 +36,16 @@ Produce film-grade creative quality and model-executable prompts from any input:
 Every full workflow must pass these stages. Keep them compact, but do not skip them:
 
 1. `INTAKE_LOCK`: format, duration, platform, aspect ratio, style, assets, final deliverable.
-2. `CREATIVE_LOCK`: premise, audience promise, protagonist/product/place engine, surprise or persuasion mechanism.
-3. `GENRE_STYLE_LOCK`: primary genre/style, visual texture, sound texture, forbidden generic look.
-4. `AIGC_FEASIBILITY_LOCK`: what is direct, asset-first, board-first, post-first, split, or avoid.
-5. `PRODUCTION_HANDOFF_LOCK`: asset codes, scene codes, prop codes, UI/text/post duties, segment plan.
-6. `PROMPT_FACTORY_LOCK`: Image2 asset prompts, Image2 storyboard prompts, Seedance prompts.
-7. `POST_LOCK`: subtitles, exact text, UI overlays, sound, music, color, export specs.
-8. `QA_LOCK`: story, feasibility, handoff, prompt, compliance, genre, final file checks.
+2. `SOURCE_LOCK`: normalized source packet, permissions, do-not-change items, assumptions.
+3. `CREATIVE_LOCK`: premise, audience promise, protagonist/product/place engine, surprise or persuasion mechanism.
+4. `BRAND_OR_RETENTION_LOCK`: brand truth / CTA / platform hook when relevant.
+5. `GENRE_STYLE_LOCK`: primary genre/style, visual texture, sound texture, forbidden generic look.
+6. `AIGC_FEASIBILITY_LOCK`: what is direct, asset-first, board-first, post-first, split, or avoid.
+7. `MODEL_PLATFORM_LOCK`: target model/platform limits and prompt adaptation.
+8. `PRODUCTION_HANDOFF_LOCK`: asset codes, scene codes, prop codes, UI/text/post duties, segment plan.
+9. `PROMPT_FACTORY_LOCK`: Image2 asset prompts, Image2 storyboard prompts, Seedance prompts.
+10. `POST_LOCK`: subtitles, exact text, UI overlays, sound, music, color, export specs.
+11. `QA_LOCK`: story, feasibility, handoff, prompt, compliance, genre, final file checks.
 
 These locks are backstage by default. The user does not need to see them unless they ask to inspect or revise a module. Their decisions must appear in the final prompts as concrete constraints, reference duties, segment choices, and post duties.
 
@@ -72,3 +75,7 @@ For speed, stages may be compact, but the logic must remain visible in the final
 ## Full Workflow Definition
 
 When the user says "全流程", "工业级", "直接给我出图出视频提示词", "做到下游", "最终提示词", or similar, the master skill must produce the final prompt Markdown file. It may also include upstream files, but it must not stop at a plan.
+
+## Audit Reminder
+
+If this pipeline changes, run `scripts/audit_skill_contract.py` to verify the required references remain wired into `SKILL.md` and `README.md`.

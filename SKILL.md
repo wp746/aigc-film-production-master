@@ -34,19 +34,24 @@ If `save-the-cat-screenwriting-skill` is available, use it for upstream story de
 ## Workflow
 
 1. Classify the user's input with `references/intake-routing.md`.
-2. For shorts, short-drama episodes, ads, TVC, MV, cultural-tourism, or contest videos, run the default execution path in `references/shortform-filmgrade-pipeline.md`.
-3. If the user has only a seed idea, run upstream development using `references/upstream-screenwriting-director.md`.
-4. If the user has an existing script, diagnose it first; preserve approved dialogue and structure unless changes are needed for AIGC producibility.
-5. For high-concept, commercial, or short-drama work, run `references/creative-development-orchestration.md` so this master skill coordinates the upstream creative brain instead of pretending the downstream SOP can invent everything alone.
-6. For genre-specific development or visual language, select the relevant pack from `references/genre-playbook-index.md`.
-7. Convert the story into an AIGC director plan before downstream production. Use `references/aigc-director-system.md`.
-8. Create a strict handoff packet using `references/aigc-production-handoff-contract.md`.
-9. For Image2/Seedance production, route into `references/downstream-image2-seedance-bridge.md` and enforce `references/final-prompt-delivery-contract.md`.
-10. For final assembly, sound, subtitles, VFX overlays, color, and delivery, use `references/postproduction-delivery.md`.
-11. For brand, celebrity, reference-style, platform, contest, music, voice, or IP-sensitive work, use `references/compliance-rights-ip-gate.md`.
-12. For multi-episode, long short-drama, or feature projects only when explicitly requested, add `references/longform-series-film-control.md` and `references/asset-database-ledger.md`.
-13. Use `references/module-visibility-and-reinsertion.md` to decide whether stages stay backstage or are shown as user-facing modules.
-14. Before calling anything industrial-grade, run `references/qa-risk-gates.md`.
+2. Normalize source material with `references/source-ingestion-normalization.md` so scripts, briefs, images, links, references, and existing assets become one clean production source.
+3. For shorts, short-drama episodes, ads, TVC, MV, cultural-tourism, or contest videos, run the default execution path in `references/shortform-filmgrade-pipeline.md`.
+4. If the user has only a seed idea, run upstream development using `references/upstream-screenwriting-director.md`.
+5. If the user has an existing script, diagnose it first; preserve approved dialogue and structure unless changes are needed for AIGC producibility.
+6. For high-concept, commercial, or short-drama work, run `references/creative-development-orchestration.md` so this master skill coordinates the upstream creative brain instead of pretending the downstream SOP can invent everything alone.
+7. For promotional ads, TVC, brand films, product videos, cultural-tourism promotion, or public-service spots, run `references/brand-ad-brief-engine.md`.
+8. For social platforms and shortform release, run `references/retention-performance-gate.md`.
+9. For genre-specific development or visual language, select the relevant pack from `references/genre-playbook-index.md`.
+10. Convert the story into an AIGC director plan before downstream production. Use `references/aigc-director-system.md`.
+11. Create a strict handoff packet using `references/aigc-production-handoff-contract.md`.
+12. Before final prompts, run `references/model-platform-adapter.md` so the same creative design is adapted to the target model/platform limits.
+13. For Image2/Seedance production, route into `references/downstream-image2-seedance-bridge.md` and enforce `references/final-prompt-delivery-contract.md`.
+14. For final assembly, sound, subtitles, VFX overlays, color, and delivery, use `references/postproduction-delivery.md`.
+15. For private assets, client work, brand, celebrity, reference-style, platform, contest, music, voice, or IP-sensitive work, use `references/privacy-provenance-governance.md` and `references/compliance-rights-ip-gate.md`.
+16. For module revisions, user approvals, or iterative production, use `references/versioning-feedback-loop.md`.
+17. For multi-episode, long short-drama, or feature projects only when explicitly requested, add `references/longform-series-film-control.md` and `references/asset-database-ledger.md`.
+18. Use `references/module-visibility-and-reinsertion.md` to decide whether stages stay backstage or are shown as user-facing modules.
+19. Before calling anything industrial-grade, run `references/qa-risk-gates.md`.
 
 ## Output Modes
 
@@ -62,6 +67,9 @@ Choose the smallest useful deliverable:
 - `Compliance And Rights Review`: IP, celebrity, brand, style reference, platform, contest, music, voice, and safety risk gate.
 - `Genre Playbook`: genre-specific story, visual, sound, AIGC risk, and downstream strategy.
 - `Final Prompt Delivery`: one Markdown file containing copy-ready Image2 asset prompts, Image2 storyboard prompts, and Seedance 2.0 prompts.
+- `Brand / Ad Brief Package`: audience, offer, product truth, persuasion angle, claim risk, CTA, brand memory, production strategy.
+- `Retention Package`: hook, scroll-stop image, beat density, emotional ramp, ending memory, platform fit.
+- `Versioned Revision Package`: changed module, impacted prompts, preserved approvals, new version.
 - `Full Industrial SOP`: all of the above plus post-production, QA, repair, naming/versioning, and delivery gates.
 
 When filesystem access is available, write substantial outputs as Markdown files in `outputs/` unless the user requests another path.
@@ -92,10 +100,15 @@ The upstream system must never hand vague directing language to the downstream s
 - Long projects need a versioned asset database and generated-take ledger, not only filenames.
 - Post-production must own exact text, subtitles, UI, cue sheets, edit decisions, VFX overlays, color, and export specs.
 - Compliance and rights checks are mandatory for brand, celebrity, platform, contest, music, voice, reference remake, or IP-adjacent work.
+- Private assets, client materials, source references, and generated outputs need provenance and reuse boundaries.
+- Advertising and promotional projects must have a persuasion strategy, claim check, CTA, and brand memory, not only a beautiful video.
+- Shortform work must account for hook strength, retention rhythm, platform format, and ending memory.
+- Prompt packages must adapt to the target model/platform instead of assuming every model behaves like Seedance 2.0.
+- Revisions must be versioned and reinserted without destroying approved upstream or downstream modules.
 - Genre-specific playbooks must be used when the project depends on a recognizable genre promise.
 - Final prompt packages must be operator-ready, not essays.
 - For full workflow requests, the final answer must link to the generated prompt Markdown file, not merely describe what should be done next.
 
 ## Local Automation
 
-Use `scripts/create_project_skeleton.py` when the user wants a production folder structure for a new AIGC project.
+Use `scripts/create_project_skeleton.py` when the user wants a production folder structure for a new AIGC project. Use `scripts/audit_skill_contract.py` after editing this skill to check that required references remain wired into `SKILL.md` and `README.md`.

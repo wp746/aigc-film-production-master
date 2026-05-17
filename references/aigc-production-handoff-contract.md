@@ -16,6 +16,7 @@ Every handoff must be specific enough that a downstream prompt factory can produ
 - Duration:
 - Aspect ratio:
 - Platform:
+- Target model/platform:
 - Style:
 - Language:
 - Delivery target:
@@ -24,6 +25,9 @@ Every handoff must be specific enough that a downstream prompt factory can produ
 - Script file:
 - Approved version:
 - Do-not-change items:
+
+## Source / Provenance Lock
+| Source | Owner | Permission | Reuse Boundary | Notes |
 
 ## Global Look Lock
 - Palette:
@@ -47,6 +51,13 @@ Every handoff must be specific enough that a downstream prompt factory can produ
 
 ## Complexity Budget
 | Segment | Characters | Actions | Camera | Text | VFX | Risk | Fix |
+
+## Brand / Retention Lock
+- Audience:
+- Proposition / story promise:
+- Hook:
+- Brand memory / final image:
+- CTA / next action:
 
 ## Downstream Instruction
 Use `image2-seedance-control` as the prompt factory. It owns final Image2 asset prompts, Image2 storyboard prompts, Seedance prompts, lint, upload order, acceptance scoring, and repair SOP.
@@ -74,3 +85,6 @@ Before downstream production:
 - Every segment has in/out state and one main job.
 - Every high-risk segment is split, simplified, or assigned to post.
 - Style reference does not override identity, wardrobe, geography, or story facts.
+- Source/provenance and reuse boundaries are clear.
+- Brand/ad/retention choices are locked when relevant.
+- Target model/platform limits are known or defaulted.

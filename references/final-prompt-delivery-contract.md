@@ -20,6 +20,10 @@ Required structure:
 # [Project] - Image2 + Seedance Production Prompts
 
 ## Source Lock
+- normalized source packet version
+- target model/platform
+- asset/provenance code policy
+- do-not-change items
 
 ## Asset Design Prompts
 ### A01-CN - Character / Scene / Prop
@@ -71,6 +75,8 @@ Every final prompt package must include:
 - clean-frame text ban
 - in/out state for segment continuity
 - post duties for exact text, subtitles, UI, title cards, sound, music, VFX, color, and delivery
+- target model/platform assumptions
+- no private source paths or client secrets in shareable prompt files
 
 ## No-Handoff-Only Rule
 

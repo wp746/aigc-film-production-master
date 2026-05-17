@@ -13,6 +13,13 @@ Run gates backstage by default. Do not expose gate tables to the user unless the
 - Surprise is earned, not random.
 - Emotional aftertaste remains after plot explanation.
 
+## Gate 1.5: Source / Provenance
+
+- Source packet exists.
+- Do-not-change items are preserved.
+- Private/client assets have reuse boundaries.
+- External reference material is treated as craft input, not copied expression.
+
 ## Gate 2: AIGC Feasibility
 
 - Every scene/segment has a feasibility label.
@@ -27,6 +34,7 @@ Run gates backstage by default. Do not expose gate tables to the user unless the
 - Every segment has in state, main action, out state, next handoff.
 - The downstream system can produce prompts without guessing story meaning.
 - Director choices are translated into production duties.
+- Brand/retention/model-platform choices are translated into production duties when relevant.
 
 ## Gate 4: Prompt Production
 
@@ -38,6 +46,7 @@ Run gates backstage by default. Do not expose gate tables to the user unless the
 - The final prompt Markdown file exists when the user requested full production.
 - Every segment has a corresponding Image2 storyboard prompt and Seedance prompt.
 - The user can copy the final prompts without reading internal SOP notes.
+- Prompt package does not expose private paths, client secrets, or unnecessary source details.
 
 ## Gate 5: Generation Review
 
@@ -77,6 +86,12 @@ Hard fail if:
 - The work is optimized for the requested shortfilm/short-drama/ad format, not inflated into feature-film planning.
 - The final output preserves film-grade creative quality: surprise, texture, motivated camera/light, sound, and aftertaste or brand memory.
 - The chain from idea to final prompts is traceable without broken assumptions.
+
+## Gate 10: Revision Safety
+
+- If the user revised a module, affected downstream prompts are identified.
+- Approved unaffected modules are preserved.
+- New version labels are assigned.
 
 ## Verdicts
 

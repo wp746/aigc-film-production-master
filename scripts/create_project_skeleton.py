@@ -8,6 +8,7 @@ from pathlib import Path
 
 
 FOLDERS = [
+    "00_sources",
     "00_brief",
     "00_script_breakdown",
     "01_story_bible",
@@ -22,6 +23,7 @@ FOLDERS = [
     "08_repairs",
     "09_postproduction",
     "10_delivery",
+    "11_versions",
 ]
 
 
@@ -74,6 +76,8 @@ def main() -> None:
         "seedance_takes.csv": "take_id,prompt_version,reference_stack,score,verdict,hard_fail,best_frame,usable_range,defects,next_action\n",
         "reusable_assets.csv": "asset_id,type,source,version,status,reuse_rule,notes\n",
         "repair_log.csv": "repair_id,take_id,defect,root_cause,changed_variable,expected_fix,result,next_action\n",
+        "source_provenance.csv": "source_id,type,owner,permission,reuse_boundary,public_private,notes\n",
+        "version_log.csv": "version_id,module,changed_by,change_summary,affected_prompts,preserved_modules,date,notes\n",
     }
     for name, header in templates.items():
         path = database_dir / name
