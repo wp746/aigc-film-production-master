@@ -13,7 +13,7 @@ Use Chinese by default unless the user asks otherwise.
 
 ## Core Principle
 
-Do not jump straight from idea or script into Image2/Seedance prompts unless the production state is locked. Do not stop at a handoff packet when the user asks for a full production workflow; continue until the final operator-ready prompt file is produced.
+Do not jump straight from idea or script into Image2/Seedance prompts unless the production state is locked. Do not stop at a handoff packet when the user asks for a full production workflow; continue until the final operator-ready prompt file is produced. Run the upstream and director reasoning backstage unless the user explicitly asks to inspect a module.
 
 The correct chain is:
 
@@ -45,7 +45,8 @@ If `save-the-cat-screenwriting-skill` is available, use it for upstream story de
 10. For final assembly, sound, subtitles, VFX overlays, color, and delivery, use `references/postproduction-delivery.md`.
 11. For brand, celebrity, reference-style, platform, contest, music, voice, or IP-sensitive work, use `references/compliance-rights-ip-gate.md`.
 12. For multi-episode, long short-drama, or feature projects only when explicitly requested, add `references/longform-series-film-control.md` and `references/asset-database-ledger.md`.
-13. Before calling anything industrial-grade, run `references/qa-risk-gates.md`.
+13. Use `references/module-visibility-and-reinsertion.md` to decide whether stages stay backstage or are shown as user-facing modules.
+14. Before calling anything industrial-grade, run `references/qa-risk-gates.md`.
 
 ## Output Modes
 
@@ -64,6 +65,12 @@ Choose the smallest useful deliverable:
 - `Full Industrial SOP`: all of the above plus post-production, QA, repair, naming/versioning, and delivery gates.
 
 When filesystem access is available, write substantial outputs as Markdown files in `outputs/` unless the user requests another path.
+
+## Visibility Rule
+
+Default user-facing output is the final downstream bilingual prompt package, not the internal reaction process. Hide intake reasoning, creative exploration, anti-cliche testing, AIGC feasibility analysis, handoff mapping, QA gates, compliance checks, and post-production reasoning unless the user asks to see them.
+
+If the user asks to inspect, extract, revise, or approve a specific module, show only that module in a clean standalone form. After the user revises or approves it, reinsert the module into the production chain and regenerate the affected downstream prompts.
 
 ## Handoff Rule
 

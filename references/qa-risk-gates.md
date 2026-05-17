@@ -2,6 +2,8 @@
 
 Use this before calling a package industrial-grade and after every major handoff.
 
+Run gates backstage by default. Do not expose gate tables to the user unless they ask for audit, review, diagnosis, or a specific module.
+
 ## Gate 1: Story
 
 - Premise is understandable quickly.

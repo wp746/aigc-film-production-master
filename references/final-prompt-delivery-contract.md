@@ -4,7 +4,7 @@ Use this whenever the user wants the system to carry the work through to usable 
 
 ## Rule
 
-The final production deliverable is a Markdown file with copy-ready prompts. It must not be only a strategy, handoff, critique, or explanation.
+The final production deliverable is a Markdown file with copy-ready prompts. It must not be only a strategy, handoff, critique, or explanation. Internal modules should not be exposed in the final file unless the user explicitly asks for them.
 
 ## Required Final File
 
@@ -56,6 +56,8 @@ Required structure:
 ## Generation Review Template
 ```
 
+Do not include visible sections such as `Creative Reasoning`, `Internal Feasibility Gate`, `QA Chain`, `Compliance Reasoning`, or `Why I Chose This`. Their results must be baked into the prompts.
+
 ## Prompt Completeness
 
 Every final prompt package must include:
@@ -77,3 +79,5 @@ If the user asks for final production prompts, do not end with "下一步交给 
 ## Final Response
 
 After creating the file, respond with the file link and only mention material assumptions or risks. Do not paste the entire prompt package in chat unless asked.
+
+If the user requested a standalone module, show that module separately, not inside the final prompt package unless they ask to archive it there.

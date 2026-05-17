@@ -44,6 +44,8 @@ Every full workflow must pass these stages. Keep them compact, but do not skip t
 7. `POST_LOCK`: subtitles, exact text, UI overlays, sound, music, color, export specs.
 8. `QA_LOCK`: story, feasibility, handoff, prompt, compliance, genre, final file checks.
 
+These locks are backstage by default. The user does not need to see them unless they ask to inspect or revise a module. Their decisions must appear in the final prompts as concrete constraints, reference duties, segment choices, and post duties.
+
 ## Film-Grade Shortform Standard
 
 Do not use "cinematic" as a vague adjective. Film-grade means:
