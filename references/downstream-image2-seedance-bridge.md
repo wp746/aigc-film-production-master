@@ -1,10 +1,12 @@
 # Downstream Image2 + Seedance Bridge
 
-Use this when a handoff packet is ready and the next step is actual prompt production.
+Use this when a handoff packet is ready and the next step is actual prompt production. For full workflow requests, combine this with `final-prompt-delivery-contract.md` and create the final prompt Markdown file.
 
 ## Preferred Path
 
 If the `image2-seedance-control` skill is available, invoke it and pass the approved AIGC production handoff. Do not rewrite its mature downstream SOP.
+
+If the user asked for final prompts, do not stop after saying this. Invoke the downstream skill or emulate its required output contract and produce the prompt file.
 
 The downstream system owns:
 
@@ -53,6 +55,10 @@ Final downstream prompt file should be one operator-ready Markdown file:
 ```
 
 Do not include internal essays unless the user explicitly asks for SOP documentation.
+
+## End-To-End Execution Rule
+
+The master pipeline is only complete when the user can copy prompts into Image2 and Seedance 2.0. A production handoff is an intermediate artifact, not the final artifact, unless the user explicitly asks to stop there.
 
 ## Repair Loop
 

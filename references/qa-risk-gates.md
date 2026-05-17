@@ -33,6 +33,9 @@ Use this before calling a package industrial-grade and after every major handoff
 - Seedance prompt is within model limit.
 - References have one clear duty each.
 - Narrative frames forbid random text, subtitles, watermarks, labels, and corrupted UI.
+- The final prompt Markdown file exists when the user requested full production.
+- Every segment has a corresponding Image2 storyboard prompt and Seedance prompt.
+- The user can copy the final prompts without reading internal SOP notes.
 
 ## Gate 5: Generation Review
 
@@ -66,6 +69,12 @@ Hard fail if:
 - Primary genre is selected.
 - Genre promise changes story structure, visual language, sound, and downstream strategy.
 - Genre-specific AIGC risks are named and controlled.
+
+## Gate 9: Shortform Film-Grade Closure
+
+- The work is optimized for the requested shortfilm/short-drama/ad format, not inflated into feature-film planning.
+- The final output preserves film-grade creative quality: surprise, texture, motivated camera/light, sound, and aftertaste or brand memory.
+- The chain from idea to final prompts is traceable without broken assumptions.
 
 ## Verdicts
 

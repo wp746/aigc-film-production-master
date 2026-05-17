@@ -1,19 +1,19 @@
 ---
 name: aigc-film-production-master
-description: Use this skill when the user wants an industrial AIGC film/video production master agent that can start from a one-line idea, existing script, reference image/video, short-drama episode, 60-episode series, or 90-minute movie concept and route it through upstream screenwriting, AIGC director planning, Image2 storyboard/control-board preparation, Seedance 2.0 prompt production, generation review, repair, post-production, and GitHub-ready SOP packaging.
+description: Use this skill when the user wants an industrial AIGC film/video production master agent for film-grade creative shorts, short-drama episodes, promotional ads, TVC, MV, cultural-tourism videos, contest videos, or any one-line idea/existing script/reference asset that must be routed through upstream screenwriting, AIGC director planning, production handoff, Image2 storyboard/control-board preparation, Seedance 2.0 prompt production, generation review, repair, and post-production delivery. Also supports series or feature planning when explicitly requested.
 ---
 
 # AIGC Film Production Master
 
 ## Role
 
-Act as the master producer for an industrial AIGC video pipeline. The skill must connect upstream creative development with downstream Image2 + Seedance 2.0 production without breaking handoff logic.
+Act as the master producer for an industrial AIGC video pipeline. Default to film-grade shortform production: creative shorts, short-drama episodes, promotional ads, TVC, MV, cultural-tourism videos, and contest videos. The skill must connect upstream creative development with downstream Image2 + Seedance 2.0 production without breaking handoff logic.
 
 Use Chinese by default unless the user asks otherwise.
 
 ## Core Principle
 
-Do not jump straight from idea or script into Image2/Seedance prompts unless the production state is already locked.
+Do not jump straight from idea or script into Image2/Seedance prompts unless the production state is locked. Do not stop at a handoff packet when the user asks for a full production workflow; continue until the final operator-ready prompt file is produced.
 
 The correct chain is:
 
@@ -34,17 +34,18 @@ If `save-the-cat-screenwriting-skill` is available, use it for upstream story de
 ## Workflow
 
 1. Classify the user's input with `references/intake-routing.md`.
-2. If the user has only a seed idea, run upstream development using `references/upstream-screenwriting-director.md`.
-3. If the user has an existing script, diagnose it first; preserve approved dialogue and structure unless changes are needed for AIGC producibility.
-4. For high-concept, commercial, short-drama, series, or feature work, run `references/creative-development-orchestration.md` so this master skill coordinates the upstream creative brain instead of pretending the downstream SOP can invent everything alone.
-5. Convert the story into an AIGC director plan before downstream production. Use `references/aigc-director-system.md`.
-6. Create a strict handoff packet using `references/aigc-production-handoff-contract.md`.
-7. For Image2/Seedance production, route into `references/downstream-image2-seedance-bridge.md`.
-8. For multi-episode, long short-drama, or feature projects, add `references/longform-series-film-control.md` and `references/asset-database-ledger.md`.
-9. For final assembly, sound, subtitles, VFX overlays, color, and delivery, use `references/postproduction-delivery.md`.
-10. For brand, celebrity, reference-style, platform, contest, music, voice, or IP-sensitive work, use `references/compliance-rights-ip-gate.md`.
-11. For genre-specific development or visual language, select the relevant pack from `references/genre-playbook-index.md`.
-12. Before calling anything industrial-grade, run `references/qa-risk-gates.md`.
+2. For shorts, short-drama episodes, ads, TVC, MV, cultural-tourism, or contest videos, run the default execution path in `references/shortform-filmgrade-pipeline.md`.
+3. If the user has only a seed idea, run upstream development using `references/upstream-screenwriting-director.md`.
+4. If the user has an existing script, diagnose it first; preserve approved dialogue and structure unless changes are needed for AIGC producibility.
+5. For high-concept, commercial, or short-drama work, run `references/creative-development-orchestration.md` so this master skill coordinates the upstream creative brain instead of pretending the downstream SOP can invent everything alone.
+6. For genre-specific development or visual language, select the relevant pack from `references/genre-playbook-index.md`.
+7. Convert the story into an AIGC director plan before downstream production. Use `references/aigc-director-system.md`.
+8. Create a strict handoff packet using `references/aigc-production-handoff-contract.md`.
+9. For Image2/Seedance production, route into `references/downstream-image2-seedance-bridge.md` and enforce `references/final-prompt-delivery-contract.md`.
+10. For final assembly, sound, subtitles, VFX overlays, color, and delivery, use `references/postproduction-delivery.md`.
+11. For brand, celebrity, reference-style, platform, contest, music, voice, or IP-sensitive work, use `references/compliance-rights-ip-gate.md`.
+12. For multi-episode, long short-drama, or feature projects only when explicitly requested, add `references/longform-series-film-control.md` and `references/asset-database-ledger.md`.
+13. Before calling anything industrial-grade, run `references/qa-risk-gates.md`.
 
 ## Output Modes
 
@@ -59,6 +60,7 @@ Choose the smallest useful deliverable:
 - `Postproduction Package`: EDL, voice/ADR cue sheet, music cue sheet, subtitle/SRT plan, VFX overlay list, LUT/color direction, final delivery specs.
 - `Compliance And Rights Review`: IP, celebrity, brand, style reference, platform, contest, music, voice, and safety risk gate.
 - `Genre Playbook`: genre-specific story, visual, sound, AIGC risk, and downstream strategy.
+- `Final Prompt Delivery`: one Markdown file containing copy-ready Image2 asset prompts, Image2 storyboard prompts, and Seedance 2.0 prompts.
 - `Full Industrial SOP`: all of the above plus post-production, QA, repair, naming/versioning, and delivery gates.
 
 When filesystem access is available, write substantial outputs as Markdown files in `outputs/` unless the user requests another path.
@@ -85,6 +87,7 @@ The upstream system must never hand vague directing language to the downstream s
 - Compliance and rights checks are mandatory for brand, celebrity, platform, contest, music, voice, reference remake, or IP-adjacent work.
 - Genre-specific playbooks must be used when the project depends on a recognizable genre promise.
 - Final prompt packages must be operator-ready, not essays.
+- For full workflow requests, the final answer must link to the generated prompt Markdown file, not merely describe what should be done next.
 
 ## Local Automation
 
