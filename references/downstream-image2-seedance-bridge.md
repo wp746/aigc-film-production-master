@@ -1,0 +1,64 @@
+# Downstream Image2 + Seedance Bridge
+
+Use this when a handoff packet is ready and the next step is actual prompt production.
+
+## Preferred Path
+
+If the `image2-seedance-control` skill is available, invoke it and pass the approved AIGC production handoff. Do not rewrite its mature downstream SOP.
+
+The downstream system owns:
+
+- Image2 asset board prompts.
+- Image2 storyboard/control-board prompts.
+- Seedance 2.0 text prompts.
+- CN/EN board pairs.
+- Reference upload order.
+- 2000-character Seedance prompt limit.
+- Prompt lint.
+- Output acceptance scoring.
+- Repair SOP.
+
+## Compatibility Rules For Any Agent
+
+If `image2-seedance-control` is unavailable, follow these minimum rules:
+
+1. Split outputs into asset prompts, storyboard prompts, and Seedance prompts.
+2. Never merge full character design and storyboard into one recurring production board.
+3. Use asset codes consistently across all prompts.
+4. Keep Image2 board text large and short; avoid long Chinese text.
+5. Use English production labels for cleaner downstream image labels when needed.
+6. Seedance segment prompts use local 0:00-0:15 timecode only.
+7. Each Seedance prompt must name reference duties compactly:
+
+```text
+@参考: CHAR_A=身份/服装 SCENE_01=空间/光 PROP_PHONE=形状/持握 当前故事板=镜头/动线 上段末帧=首帧状态
+```
+
+8. Narrative frames must be clean: no subtitles, labels, random text, watermarks, or corrupted UI unless explicitly requested.
+9. If exact text matters, use `UI_TEXT_*` or `POST_*`.
+10. After generation, score the take before repair or acceptance.
+
+## Downstream File Contract
+
+Final downstream prompt file should be one operator-ready Markdown file:
+
+```markdown
+# Image2 Seedance Control Prompts
+
+## Asset Design Prompts
+
+## Storyboard Prompts
+
+## Seedance 2.0 Prompts
+```
+
+Do not include internal essays unless the user explicitly asks for SOP documentation.
+
+## Repair Loop
+
+When a generated take fails:
+
+- Diagnose root cause: script beat / overload / asset unreadable / storyboard impossible / prompt ambiguous / reference conflict / model limitation / edit issue / sound issue.
+- Repair the smallest unit.
+- Change one primary variable per patch when possible.
+- Keep bad takes for diagnosis.

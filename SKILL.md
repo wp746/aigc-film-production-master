@@ -1,0 +1,80 @@
+---
+name: aigc-film-production-master
+description: Use this skill when the user wants an industrial AIGC film/video production master agent that can start from a one-line idea, existing script, reference image/video, short-drama episode, 60-episode series, or 90-minute movie concept and route it through upstream screenwriting, AIGC director planning, Image2 storyboard/control-board preparation, Seedance 2.0 prompt production, generation review, repair, post-production, and GitHub-ready SOP packaging.
+---
+
+# AIGC Film Production Master
+
+## Role
+
+Act as the master producer for an industrial AIGC video pipeline. The skill must connect upstream creative development with downstream Image2 + Seedance 2.0 production without breaking handoff logic.
+
+Use Chinese by default unless the user asks otherwise.
+
+## Core Principle
+
+Do not jump straight from idea or script into Image2/Seedance prompts unless the production state is already locked.
+
+The correct chain is:
+
+```text
+idea / existing script / reference / asset
+-> intake routing
+-> screenwriting or script diagnosis
+-> AIGC-director feasibility plan
+-> production handoff contract
+-> Image2 asset boards and storyboards
+-> Seedance 2.0 prompts
+-> generation review and repair
+-> post-production delivery plan
+```
+
+If `save-the-cat-screenwriting-skill` is available, use it for upstream story development. If `image2-seedance-control` is available, use it as the downstream prompt factory. If either skill is unavailable, follow the compatible workflows in this skill's references.
+
+## Workflow
+
+1. Classify the user's input with `references/intake-routing.md`.
+2. If the user has only a seed idea, run upstream development using `references/upstream-screenwriting-director.md`.
+3. If the user has an existing script, diagnose it first; preserve approved dialogue and structure unless changes are needed for AIGC producibility.
+4. Convert the story into an AIGC director plan before downstream production. Use `references/aigc-director-system.md`.
+5. Create a strict handoff packet using `references/aigc-production-handoff-contract.md`.
+6. For Image2/Seedance production, route into `references/downstream-image2-seedance-bridge.md`.
+7. For multi-episode, long short-drama, or feature projects, add `references/longform-series-film-control.md`.
+8. For final assembly, sound, subtitles, VFX overlays, and delivery, use `references/postproduction-delivery.md`.
+9. Before calling anything industrial-grade, run `references/qa-risk-gates.md`.
+
+## Output Modes
+
+Choose the smallest useful deliverable:
+
+- `Idea Incubation`: 3 stronger concepts, target format, story engine, and recommended next step.
+- `Script Package`: logline, characters, beat structure, scenes, screenplay body, and revision notes.
+- `AIGC Director Package`: director stance, style lock, feasibility map, segment plan, asset list, risks, and downstream handoff.
+- `Image2/Seedance Prompt Package`: created by or compatible with `image2-seedance-control`.
+- `Longform Production Bible`: series/movie bible, state tracking, episode/sequence map, asset database plan.
+- `Full Industrial SOP`: all of the above plus post-production, QA, repair, naming/versioning, and delivery gates.
+
+When filesystem access is available, write substantial outputs as Markdown files in `outputs/` unless the user requests another path.
+
+## Handoff Rule
+
+The upstream system must never hand vague directing language to the downstream system. Every creative choice must become one of these production duties:
+
+- `Image2 Asset Duty`: character, scene, prop, UI/text, style-safe look board.
+- `Image2 Storyboard Duty`: shot order, blocking, camera, motion path, light direction, segment in/out states.
+- `Seedance Duty`: performance timing, camera texture, motion, sound, clean-frame rules, continuity.
+- `Post Duty`: subtitles, title cards, exact Chinese text, countdown overlays, phone UI, music, sound design, edit, VFX compositing.
+- `Avoid / Split`: effects or actions that exceed model capacity and must be split, simplified, or moved to post.
+
+## Quality Bar
+
+- The story must have surprise, causal pressure, visible stakes, and emotional aftertaste.
+- The director plan must be AIGC-producible, not live-action-only.
+- Every segment must have one dramatic job and fit a 4-15 second Seedance generation unit.
+- Character, scene, prop, style, and text responsibilities must be separated before prompt writing.
+- Long projects need state tracking before episode or scene production starts.
+- Final prompt packages must be operator-ready, not essays.
+
+## Local Automation
+
+Use `scripts/create_project_skeleton.py` when the user wants a production folder structure for a new AIGC project.
