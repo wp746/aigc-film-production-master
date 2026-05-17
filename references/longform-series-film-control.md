@@ -16,6 +16,7 @@ Do not produce longform as a pile of scenes. Build a control system first.
 - `Continuity State Log`: what changes after every episode or sequence.
 - `Plant/Payoff Ledger`: setup, reminder, twist, payoff, consequence.
 - `Production Priority Map`: which assets must be generated first to reduce drift.
+- `Asset Database And Take Ledger`: versioned tables for character states, scene states, prop states, shots, generated takes, repair history, and reusable assets. Load `asset-database-ledger.md`.
 
 ## 60-Episode Short-Drama Structure
 
@@ -54,6 +55,8 @@ Build:
 - AIGC production risk map
 
 Do not start Image2/Seedance prompts until the first production block is chosen.
+
+Before downstream production, create the asset database skeleton and lock the current block's character, scene, prop, style, and shot IDs.
 
 ## Production Blocks
 

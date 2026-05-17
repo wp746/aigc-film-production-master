@@ -12,6 +12,7 @@ FOLDERS = [
     "00_script_breakdown",
     "01_story_bible",
     "01_style_bible",
+    "01_asset_database",
     "02_assets",
     "03_aigc_director",
     "04_image2_storyboards",
@@ -60,6 +61,24 @@ def main() -> None:
             "| Postproduction | TODO | | |\n",
             encoding="utf-8",
         )
+
+    database_dir = project_dir / "01_asset_database"
+    templates = {
+        "characters.csv": "char_id,name,identity_source,face_anchors,wardrobe_base,voice_rhythm,gesture_habit,version,status\n",
+        "character_states.csv": "char_id,state_unit,wardrobe_state,body_state,emotion_state,forbidden_drift,version,status\n",
+        "scenes.csv": "scene_id,location_name,geography_source,fixed_anchors,time_weather,camera_safe_zones,version,status\n",
+        "scene_states.csv": "scene_id,state_unit,damage_or_change,time_weather,light_state,forbidden_drift,version,status\n",
+        "props.csv": "prop_id,name,asset_source,shape_material,holder,hand_logic,exact_text_mode,version,status\n",
+        "prop_states.csv": "prop_id,state_unit,state_change,holder,hand_logic,forbidden_drift,version,status\n",
+        "shots.csv": "shot_id,segment_id,story_beat,function,assets_used,in_state,out_state,prompt_version,storyboard_version,status\n",
+        "seedance_takes.csv": "take_id,prompt_version,reference_stack,score,verdict,hard_fail,best_frame,usable_range,defects,next_action\n",
+        "reusable_assets.csv": "asset_id,type,source,version,status,reuse_rule,notes\n",
+        "repair_log.csv": "repair_id,take_id,defect,root_cause,changed_variable,expected_fix,result,next_action\n",
+    }
+    for name, header in templates.items():
+        path = database_dir / name
+        if not path.exists():
+            path.write_text(header, encoding="utf-8")
 
     print(project_dir)
 

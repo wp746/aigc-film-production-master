@@ -36,12 +36,15 @@ If `save-the-cat-screenwriting-skill` is available, use it for upstream story de
 1. Classify the user's input with `references/intake-routing.md`.
 2. If the user has only a seed idea, run upstream development using `references/upstream-screenwriting-director.md`.
 3. If the user has an existing script, diagnose it first; preserve approved dialogue and structure unless changes are needed for AIGC producibility.
-4. Convert the story into an AIGC director plan before downstream production. Use `references/aigc-director-system.md`.
-5. Create a strict handoff packet using `references/aigc-production-handoff-contract.md`.
-6. For Image2/Seedance production, route into `references/downstream-image2-seedance-bridge.md`.
-7. For multi-episode, long short-drama, or feature projects, add `references/longform-series-film-control.md`.
-8. For final assembly, sound, subtitles, VFX overlays, and delivery, use `references/postproduction-delivery.md`.
-9. Before calling anything industrial-grade, run `references/qa-risk-gates.md`.
+4. For high-concept, commercial, short-drama, series, or feature work, run `references/creative-development-orchestration.md` so this master skill coordinates the upstream creative brain instead of pretending the downstream SOP can invent everything alone.
+5. Convert the story into an AIGC director plan before downstream production. Use `references/aigc-director-system.md`.
+6. Create a strict handoff packet using `references/aigc-production-handoff-contract.md`.
+7. For Image2/Seedance production, route into `references/downstream-image2-seedance-bridge.md`.
+8. For multi-episode, long short-drama, or feature projects, add `references/longform-series-film-control.md` and `references/asset-database-ledger.md`.
+9. For final assembly, sound, subtitles, VFX overlays, color, and delivery, use `references/postproduction-delivery.md`.
+10. For brand, celebrity, reference-style, platform, contest, music, voice, or IP-sensitive work, use `references/compliance-rights-ip-gate.md`.
+11. For genre-specific development or visual language, select the relevant pack from `references/genre-playbook-index.md`.
+12. Before calling anything industrial-grade, run `references/qa-risk-gates.md`.
 
 ## Output Modes
 
@@ -52,6 +55,10 @@ Choose the smallest useful deliverable:
 - `AIGC Director Package`: director stance, style lock, feasibility map, segment plan, asset list, risks, and downstream handoff.
 - `Image2/Seedance Prompt Package`: created by or compatible with `image2-seedance-control`.
 - `Longform Production Bible`: series/movie bible, state tracking, episode/sequence map, asset database plan.
+- `Longform Asset Database`: character state table, scene state table, prop state table, shot ledger, take score library, reusable asset library.
+- `Postproduction Package`: EDL, voice/ADR cue sheet, music cue sheet, subtitle/SRT plan, VFX overlay list, LUT/color direction, final delivery specs.
+- `Compliance And Rights Review`: IP, celebrity, brand, style reference, platform, contest, music, voice, and safety risk gate.
+- `Genre Playbook`: genre-specific story, visual, sound, AIGC risk, and downstream strategy.
 - `Full Industrial SOP`: all of the above plus post-production, QA, repair, naming/versioning, and delivery gates.
 
 When filesystem access is available, write substantial outputs as Markdown files in `outputs/` unless the user requests another path.
@@ -73,6 +80,10 @@ The upstream system must never hand vague directing language to the downstream s
 - Every segment must have one dramatic job and fit a 4-15 second Seedance generation unit.
 - Character, scene, prop, style, and text responsibilities must be separated before prompt writing.
 - Long projects need state tracking before episode or scene production starts.
+- Long projects need a versioned asset database and generated-take ledger, not only filenames.
+- Post-production must own exact text, subtitles, UI, cue sheets, edit decisions, VFX overlays, color, and export specs.
+- Compliance and rights checks are mandatory for brand, celebrity, platform, contest, music, voice, reference remake, or IP-adjacent work.
+- Genre-specific playbooks must be used when the project depends on a recognizable genre promise.
 - Final prompt packages must be operator-ready, not essays.
 
 ## Local Automation

@@ -1,6 +1,6 @@
 # AIGC Film Production Master Skill
 
-> v1.0.0 | 2026-05-17
+> v1.1.0 | 2026-05-17
 
 一个面向 AIGC 影视创作者的工业级全链路总控 skill。
 
@@ -43,12 +43,16 @@ https://github.com/wp746/aigc-film-production-master/archive/refs/heads/main.zip
 
 - [SKILL.md](SKILL.md)
 - [入口识别与路由](references/intake-routing.md)
+- [创意开发编排](references/creative-development-orchestration.md)
 - [上游编剧与导演系统](references/upstream-screenwriting-director.md)
 - [AIGC 导演系统](references/aigc-director-system.md)
 - [AIGC 生产交接协议](references/aigc-production-handoff-contract.md)
 - [Image2 + Seedance 下游桥接](references/downstream-image2-seedance-bridge.md)
 - [长片 / 系列控制](references/longform-series-film-control.md)
+- [长片资产数据库与生产台账](references/asset-database-ledger.md)
 - [后期交付](references/postproduction-delivery.md)
+- [合规 / 版权 / IP 风险门](references/compliance-rights-ip-gate.md)
+- [类型片 Playbook 索引](references/genre-playbook-index.md)
 - [QA 与风险门禁](references/qa-risk-gates.md)
 
 > 注意：如果仓库是 private，OpenClaw / Hermes / 其他智能体需要具备访问该 GitHub 仓库的权限。
@@ -122,6 +126,27 @@ image2-seedance-control = 下游 Image2 资产板 + 故事板 + Seedance 2.0 提
 - 可视化场景结构
 
 它不会只写“正确但普通”的故事，而是会主动检查最俗套版本，并设计更有惊喜和回味的版本。
+
+### 2.5 创意开发编排
+
+v1.1.0 起，系统明确规定：下游 `image2-seedance-control` 不能承担爆款故事、反套路结构、后劲设计和人物命运弧的主脑职责。
+
+创意开发由 master 协调上游完成：
+
+- 优先调用 `save-the-cat-screenwriting-skill`
+- 必要时调用类型片专用 playbook
+- 没有外部 skill 时，使用内置创意开发编排模块
+
+核心产出包括：
+
+- 项目观众承诺
+- 故事引擎
+- 人物命运弧
+- 反套路检查
+- 代价规则
+- 道德陷阱
+- 结尾后劲图像
+- AIGC 生产影响判断
 
 ### 3. 现成剧本诊断
 
@@ -216,6 +241,35 @@ image2-seedance-control = 下游 Image2 资产板 + 故事板 + Seedance 2.0 提
 
 这样可以控制成本、漂移和返修风险。
 
+### 7.5 长片级资产数据库
+
+v1.1.0 起，长项目不只依赖命名规则，而是要求建立资产数据库和生产台账。
+
+内置数据库表包括：
+
+- `characters.csv`
+- `character_states.csv`
+- `scenes.csv`
+- `scene_states.csv`
+- `props.csv`
+- `prop_states.csv`
+- `shots.csv`
+- `seedance_takes.csv`
+- `reusable_assets.csv`
+- `repair_log.csv`
+
+用于追踪：
+
+- 角色状态
+- 场景状态
+- 道具状态
+- 镜头台账
+- 已生成 take 评分
+- 可复用资产
+- 返修历史
+
+60 集短剧或 90 分钟电影，如果没有这些表，不允许称为工业级长片生产。
+
 ### 8. 后期交付规划
 
 它会明确哪些任务不该交给视频模型，而该交给后期：
@@ -232,6 +286,68 @@ image2-seedance-control = 下游 Image2 资产板 + 故事板 + Seedance 2.0 提
 - 剪辑节奏
 - 调色统一
 - 平台交付规格
+
+v1.1.0 起，后期模块进一步补齐：
+
+- EDL / 剪辑决策表
+- 旁白 / 对白 / ADR cue sheet
+- 音乐 cue sheet
+- 声音设计 cue sheet
+- SRT 字幕草稿
+- VFX / UI overlay 清单
+- 调色 / LUT 方向
+- 最终导出规格
+
+### 9. 合规 / 版权 / IP 风险门
+
+当项目涉及品牌、名人、公众人物、参考片复刻、平台投放、比赛投稿、音乐、声音、肖像、IP 或风格参考时，必须运行合规风险门。
+
+系统会检查：
+
+- 品牌 / 商标
+- 名人 / 肖像
+- 私人图像 / 声音
+- 版权 IP
+- 风格参考
+- 音乐 / 歌词
+- 声音克隆
+- 平台 / 比赛规则
+- 产品宣传声明
+- 安全与内容风险
+
+如果本地有 `compliance-review-skill`，优先让它做专项审核。
+
+### 10. 类型片 Playbook
+
+v1.1.0 起，新增类型片索引，不再默认所有片子都用同一种“电影感”。
+
+已覆盖：
+
+- 悬疑
+- 恐怖
+- 黑色电影
+- 喜剧
+- 科幻
+- 赛博
+- 国风
+- 年代戏
+- 纪录片
+- 儿童动画
+- 文旅
+- 实验短片
+- 音乐剧
+- 爱情
+- 动作
+- 黑色幽默
+
+每个类型都会定义：
+
+- 观众承诺
+- 故事动作
+- 视觉语言
+- 声音语言
+- AIGC 风险
+- 下游生产策略
 
 ## 标准工作流
 
@@ -314,12 +430,16 @@ aigc-film-production-master/
     openai.yaml
   references/
     intake-routing.md
+    creative-development-orchestration.md
     upstream-screenwriting-director.md
     aigc-director-system.md
     aigc-production-handoff-contract.md
     downstream-image2-seedance-bridge.md
     longform-series-film-control.md
+    asset-database-ledger.md
     postproduction-delivery.md
+    compliance-rights-ip-gate.md
+    genre-playbook-index.md
     qa-risk-gates.md
   scripts/
     create_project_skeleton.py
@@ -436,6 +556,7 @@ python3 scripts/create_project_skeleton.py "项目名" --root ./projects
 - `00_script_breakdown`
 - `01_story_bible`
 - `01_style_bible`
+- `01_asset_database`
 - `02_assets`
 - `03_aigc_director`
 - `04_image2_storyboards`
@@ -447,6 +568,32 @@ python3 scripts/create_project_skeleton.py "项目名" --root ./projects
 - `10_delivery`
 
 ## 版本记录
+
+### v1.1.0 | 2026-05-17
+
+补齐第一轮系统审查中发现的五个关键缺口：
+
+1. 上游创意开发不能交给下游 SOP 单独承担  
+   新增 `creative-development-orchestration.md`，明确 master 负责协调编剧 skill、类型片 playbook 和创意开发框架。
+
+2. 长片级资产数据库不够硬  
+   新增 `asset-database-ledger.md`，定义角色状态表、场景状态表、道具状态表、镜头台账、Seedance take 评分库、可复用资产库和返修日志。
+
+3. 后期系统偏弱  
+   扩展 `postproduction-delivery.md`，加入 EDL、ADR/voice cue sheet、music cue sheet、SRT、VFX overlay、LUT/color direction 和最终交付规格。
+
+4. 合规 / 版权 / IP 风险不是主模块  
+   新增 `compliance-rights-ip-gate.md`，覆盖品牌、名人、IP、参考片、平台、比赛、音乐、声音、肖像和安全风险。
+
+5. 风格覆盖需要类型片包  
+   新增 `genre-playbook-index.md`，覆盖悬疑、恐怖、黑色电影、儿童动画、文旅、科幻、赛博、国风、年代戏、纪录片、实验短片、音乐剧、喜剧等类型。
+
+同时更新：
+
+- `SKILL.md` 工作流路由
+- `qa-risk-gates.md` 风险门禁
+- `longform-series-film-control.md` 长片控制
+- `create_project_skeleton.py`，新增 `01_asset_database` 和 10 个 CSV 台账模板
 
 ### v1.0.0 | 2026-05-17
 
@@ -487,8 +634,8 @@ python3 scripts/create_project_skeleton.py "项目名" --root ./projects
 
 ## 未来计划
 
-- 增加类型片专属 playbook：悬疑、恐怖、喜剧、科幻、国风、文旅、儿童动画、纪录片。
-- 增加长片级资产数据库模板。
-- 增加后期 EDL / SRT / 音乐 cue sheet 模板。
+- 将类型片 playbook 从索引扩展为每个类型独立文件。
+- 增加可视化资产数据库模板。
+- 增加自动生成 EDL / SRT / cue sheet 的脚本。
 - 增加与更多视频模型的下游桥接规则。
 - 增加多智能体协作版：编剧、导演、美术、分镜、Seedance、后期、质检。

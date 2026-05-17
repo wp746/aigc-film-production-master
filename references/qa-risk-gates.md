@@ -51,8 +51,21 @@ Hard fail if:
 - Character states are tracked after every episode/sequence.
 - Plant/payoff ledger exists.
 - Asset database is versioned.
+- Character state table, scene state table, prop state table, shot ledger, take score library, and reusable asset library exist for longform production.
 - Only one production block is sent downstream at a time.
 - Generated takes are scored and logged.
+
+## Gate 7: Compliance / Rights / IP
+
+- Brand, celebrity, public figure, private likeness, music, voice, platform, contest, and reference-remake risks are checked.
+- Any unauthorized exact IP, logo, lyrics, voice clone, or private likeness request is redesigned or held.
+- Platform or contest requirements are known before delivery.
+
+## Gate 8: Genre Coverage
+
+- Primary genre is selected.
+- Genre promise changes story structure, visual language, sound, and downstream strategy.
+- Genre-specific AIGC risks are named and controlled.
 
 ## Verdicts
 

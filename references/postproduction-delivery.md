@@ -24,13 +24,16 @@ AIGC production does not end at generated clips. Exact text, voice, subtitles, m
 
 For production-ready projects, create:
 
-- edit assembly list
+- edit assembly list / EDL
 - segment order
 - in/out state notes
 - subtitle/SRT plan
-- voiceover/dialogue cue sheet
-- music and sound cue sheet
+- voiceover/dialogue/ADR cue sheet
+- music cue sheet
+- sound design cue sheet
 - VFX overlay list
+- UI/text replacement list
+- color/LUT direction
 - final export specs
 - version review log
 
@@ -39,21 +42,39 @@ For production-ready projects, create:
 ```markdown
 # [Project] - Postproduction Plan
 
-## Edit Assembly
-| Order | Segment | Use | Cut In | Cut Out | Transition | Notes |
+## Edit Decision List / EDL
+| Order | Source Segment | Take | Source In | Source Out | Timeline In | Timeline Out | Transition | Reason |
+
+## Segment Assembly
+| Order | Segment | Use | Cut In | Cut Out | Hold/Trim | Notes |
 
 ## Sound Cue Sheet
-| Time | Layer | Cue | Purpose |
+| Timeline Time | Layer | Cue | Source | Purpose | Mix Note |
+
+## Voice / ADR Cue Sheet
+| Time | Character/Voice | Line | Delivery | Sync | Notes |
+
+## Music Cue Sheet
+| Time | Cue Name | Mood | Start/End | Rights/Source | Mix Note |
 
 ## Subtitle / Text Plan
-| Time | Text | Mode | Owner |
+| Time | Text | Mode | Safe Area | Owner |
+
+## SRT Draft
+```srt
+1
+00:00:00,000 --> 00:00:02,000
+[subtitle text]
+```
 
 ## VFX / UI Overlay Plan
-| Time | Element | Source | Composite Rule |
+| Time | Element | Source | Composite Rule | Tracking | Owner |
 
-## Color And Finish
+## Color / LUT Direction
+| Scene | Look | Contrast | Saturation | Grain | Notes |
 
-## Delivery Versions
+## Final Delivery Specs
+| Version | Aspect | Resolution | FPS | Codec | Audio | Platform | Filename |
 ```
 
 ## Hard Rules
@@ -62,3 +83,4 @@ For production-ready projects, create:
 - Do not bury exact Chinese text in Image2 storyboards.
 - Do not treat generated clip order as final edit rhythm; editing may need trims, holds, or sound bridges.
 - If a generated segment is visually strong but story timing is weak, repair in edit before regenerating.
+- AIGC clips are source footage, not the final film. Final meaning is often created by edit, sound, text, and color.
