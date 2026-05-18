@@ -6,6 +6,16 @@ Use this when the project depends on a recognizable genre promise. The playbook 
 
 Pick one primary genre and at most two secondary flavors. The primary genre controls story promise and audience expectation. Secondary flavors only modify tone, pacing, or visual treatment.
 
+For the five high-priority production genres below, load the dedicated deep playbook after selecting the primary genre:
+
+| Primary Genre | Load |
+|---|---|
+| Suspense / Thriller / 悬疑惊悚 | `genre-playbooks/suspense-thriller.md` |
+| Cultural Tourism / 文旅 | `genre-playbooks/cultural-tourism.md` |
+| Commercial / TVC / 广告 | `genre-playbooks/commercial-tvc.md` |
+| Short Drama / 短剧 | `genre-playbooks/short-drama.md` |
+| Black Humor / 黑色幽默 | `genre-playbooks/black-humor.md` |
+
 ## Playbook Table
 
 | Genre | Story Promise | Visual / Sound Strategy | AIGC Risk | Downstream Strategy |
@@ -50,3 +60,15 @@ Pick one primary genre and at most two secondary flavors. The primary genre cont
 ## Hard Rule
 
 Do not use genre as decoration. If the genre does not change story structure, camera rhythm, sound, production design, or audience expectation, it is not doing work.
+
+## Deep Playbook Handoff
+
+When a deep playbook is loaded, bake its decisions into downstream prompts as:
+
+- story promise and hook
+- visual language lock
+- sound language lock
+- shot rhythm and segment strategy
+- asset/prop priorities
+- AIGC risk controls
+- post duties for text, sound, UI, claims, CTA, subtitles, or overlays

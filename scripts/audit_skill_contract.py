@@ -29,6 +29,14 @@ REQUIRED_REFERENCES = [
     "qa-risk-gates.md",
 ]
 
+REQUIRED_GENRE_PLAYBOOKS = [
+    "suspense-thriller.md",
+    "cultural-tourism.md",
+    "commercial-tvc.md",
+    "short-drama.md",
+    "black-humor.md",
+]
+
 
 def main() -> int:
     skill = (ROOT / "SKILL.md").read_text(encoding="utf-8")
@@ -43,6 +51,14 @@ def main() -> int:
             missing.append(f"not wired in SKILL.md: {ref}")
         if ref not in readme:
             missing.append(f"not documented in README.md: {ref}")
+
+    index = (ROOT / "references" / "genre-playbook-index.md").read_text(encoding="utf-8")
+    for ref in REQUIRED_GENRE_PLAYBOOKS:
+        path = ROOT / "references" / "genre-playbooks" / ref
+        if not path.exists():
+            missing.append(f"missing genre playbook: references/genre-playbooks/{ref}")
+        if ref not in index:
+            missing.append(f"not wired in genre-playbook-index.md: {ref}")
 
     if "v1.4.0" not in readme:
         missing.append("README.md does not mention v1.4.0")

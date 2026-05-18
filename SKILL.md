@@ -41,7 +41,7 @@ If `save-the-cat-screenwriting-skill` is available, use it for upstream story de
 6. For high-concept, commercial, or short-drama work, run `references/creative-development-orchestration.md` so this master skill coordinates the upstream creative brain instead of pretending the downstream SOP can invent everything alone.
 7. For promotional ads, TVC, brand films, product videos, cultural-tourism promotion, or public-service spots, run `references/brand-ad-brief-engine.md`.
 8. For social platforms and shortform release, run `references/retention-performance-gate.md`.
-9. For genre-specific development or visual language, select the relevant pack from `references/genre-playbook-index.md`.
+9. For genre-specific development or visual language, select the relevant pack from `references/genre-playbook-index.md`; for悬疑、文旅、广告/TVC、短剧、黑色幽默, load the dedicated deep playbook under `references/genre-playbooks/`.
 10. Convert the story into an AIGC director plan before downstream production. Use `references/aigc-director-system.md`.
 11. Create a strict handoff packet using `references/aigc-production-handoff-contract.md`.
 12. Before final prompts, run `references/model-platform-adapter.md` so the same creative design is adapted to the target model/platform limits.
