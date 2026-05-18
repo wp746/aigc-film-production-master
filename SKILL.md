@@ -51,7 +51,8 @@ If `save-the-cat-screenwriting-skill` is available, use it for upstream story de
 16. For module revisions, user approvals, or iterative production, use `references/versioning-feedback-loop.md`.
 17. For multi-episode, long short-drama, or feature projects only when explicitly requested, add `references/longform-series-film-control.md` and `references/asset-database-ledger.md`.
 18. Use `references/module-visibility-and-reinsertion.md` to decide whether stages stay backstage or are shown as user-facing modules.
-19. Before calling anything industrial-grade, run `references/qa-risk-gates.md`.
+19. When packaging this system for friends or non-native agents, use `references/universal-agent-adapter.md`.
+20. Before calling anything industrial-grade, run `references/qa-risk-gates.md`.
 
 ## Output Modes
 

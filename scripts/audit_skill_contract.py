@@ -19,6 +19,7 @@ REQUIRED_REFERENCES = [
     "aigc-director-system.md",
     "aigc-production-handoff-contract.md",
     "model-platform-adapter.md",
+    "universal-agent-adapter.md",
     "downstream-image2-seedance-bridge.md",
     "final-prompt-delivery-contract.md",
     "module-visibility-and-reinsertion.md",
@@ -60,8 +61,8 @@ def main() -> int:
         if ref not in index:
             missing.append(f"not wired in genre-playbook-index.md: {ref}")
 
-    if "v1.4.0" not in readme:
-        missing.append("README.md does not mention v1.4.0")
+    if "v1.6.0" not in readme:
+        missing.append("README.md does not mention v1.6.0")
 
     if missing:
         print("Master skill contract audit failed:")

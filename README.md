@@ -1,6 +1,6 @@
 # AIGC Film Production Master Skill
 
-> v1.5.0 | 2026-05-19
+> v1.6.0 | 2026-05-19
 
 一个面向 AIGC 影视创作者的工业级全链路总控 skill。
 
@@ -52,6 +52,7 @@ https://github.com/wp746/aigc-film-production-master/archive/refs/heads/main.zip
 - [AIGC 导演系统](references/aigc-director-system.md)
 - [AIGC 生产交接协议](references/aigc-production-handoff-contract.md)
 - [模型与平台适配器](references/model-platform-adapter.md)
+- [Universal Agent Adapter](references/universal-agent-adapter.md)
 - [Image2 + Seedance 下游桥接](references/downstream-image2-seedance-bridge.md)
 - [最终提示词交付协议](references/final-prompt-delivery-contract.md)
 - [模块可见性与回装协议](references/module-visibility-and-reinsertion.md)
@@ -629,6 +630,7 @@ aigc-film-production-master/
     aigc-director-system.md
     aigc-production-handoff-contract.md
     model-platform-adapter.md
+    universal-agent-adapter.md
     downstream-image2-seedance-bridge.md
     final-prompt-delivery-contract.md
     module-visibility-and-reinsertion.md
@@ -694,6 +696,30 @@ https://raw.githubusercontent.com/wp746/aigc-film-production-master/main/SKILL.m
 如果它们支持“先导入仓库，再读取根目录 skill”，这个仓库本身已经是 skill 根目录，不需要再额外指定子路径。
 
 如果仓库保持 private，需要确保对应智能体或平台有 GitHub 访问权限。
+
+## 给朋友复用的万能调用卡
+
+把下面这一段直接发给朋友。无论他用 Codex、OpenClaw、Hermes、Cursor、Claude、Gemini，还是任何支持读取 GitHub / 粘贴文件的 Agent，都可以按这个协议调用：
+
+```text
+请调用 aigc-film-production-master。
+
+如果你支持 skill/GitHub 仓库读取，请使用：
+https://github.com/wp746/aigc-film-production-master
+
+执行规则：
+1. 先读取 SKILL.md。
+2. 按任务类型读取必要 references，不要一次性展开全部文件。
+3. 默认后台完成创意强化、AIGC导演、生产交接、合规/QA、模型适配。
+4. 如果我没有特别要求，不要展示内部推演过程。
+5. 最终交付可复制的 Image2 + Seedance 双语提示词 Markdown 文件。
+6. 如果我只要求某一模块，就只展示该模块；我修改后再回装进主链路。
+
+我的创意 / 剧本 / brief：
+[在这里粘贴]
+```
+
+如果对方的 Agent 不能联网，就把 `SKILL.md` 和 [Universal Agent Adapter](references/universal-agent-adapter.md) 复制给它，再按任务补充必要 references。
 
 ## 怎么使用
 
@@ -791,6 +817,22 @@ python3 scripts/create_project_skeleton.py "项目名" --root ./projects
 - `version_log.csv`
 
 ## 版本记录
+
+### v1.6.0 | 2026-05-19
+
+将系统封装为更适合朋友和外部 Agent 复用的分发形态。
+
+新增：
+
+- `references/universal-agent-adapter.md`：定义 Native Skill、GitHub 仓库读取、纯复制粘贴三种复用方式。
+- 万能调用卡：朋友可直接粘贴到任意支持 GitHub 或文件读取的 Agent 中。
+- 外部 Agent 执行契约：要求它执行 skill，而不是只总结仓库；默认后台推理，最终交付下游双语提示词文件。
+
+更新：
+
+- `SKILL.md`：接入 universal agent adapter。
+- `agents/openai.yaml`：更新为更明确的可分发描述。
+- `audit_skill_contract.py`：把 universal adapter 纳入审计。
 
 ### v1.1.0 | 2026-05-17
 

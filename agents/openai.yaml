@@ -1,6 +1,6 @@
 interface:
   display_name: "AIGC Film Production Master"
-  short_description: "工业级AIGC影视全链路创作与生产总控"
-  default_prompt: "Use $aigc-film-production-master to turn my idea or script into an industrial AIGC film production package."
+  short_description: "可分发给任何Agent的工业级AIGC影视生产总控"
+  default_prompt: "Use $aigc-film-production-master to turn my idea, script, brief, or reference assets into an operator-ready Image2 + Seedance bilingual prompt package."
 policy:
   allow_implicit_invocation: true
