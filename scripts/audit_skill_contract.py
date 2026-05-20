@@ -21,6 +21,7 @@ REQUIRED_REFERENCES = [
     "model-platform-adapter.md",
     "universal-agent-adapter.md",
     "downstream-image2-seedance-bridge.md",
+    "image2-seedance-v192-downstream-contract.md",
     "final-prompt-delivery-contract.md",
     "module-visibility-and-reinsertion.md",
     "postproduction-delivery.md",
@@ -61,8 +62,11 @@ def main() -> int:
         if ref not in index:
             missing.append(f"not wired in genre-playbook-index.md: {ref}")
 
-    if "v1.6.0" not in readme:
-        missing.append("README.md does not mention v1.6.0")
+    if "v1.7.0" not in readme:
+        missing.append("README.md does not mention v1.7.0")
+
+    if not (ROOT / "scripts" / "prompt_lint.py").exists():
+        missing.append("missing script: scripts/prompt_lint.py")
 
     if missing:
         print("Master skill contract audit failed:")

@@ -41,12 +41,20 @@ Run gates backstage by default. Do not expose gate tables to the user unless the
 - Asset prompts and storyboard prompts are separate.
 - Storyboard and Seedance prompt match shot order and timecodes.
 - Seedance prompt is within model limit.
+- Seedance prompt uses the current 5000-character limit, not the older 2000-character limit.
 - References have one clear duty each.
 - Narrative frames forbid random text, subtitles, watermarks, labels, and corrupted UI.
 - The final prompt Markdown file exists when the user requested full production.
 - Every segment has a corresponding Image2 storyboard prompt and Seedance prompt.
 - The user can copy the final prompts without reading internal SOP notes.
 - Prompt package does not expose private paths, client secrets, or unnecessary source details.
+- Every Image2 board carries a fixed board-system lock and a visible A/S top-title index.
+- Storyboard boards use previs/line-art control style with identity firewall, not photoreal character redesign.
+- Dialogue segments preserve exact lines, VOICE_LOCK, speech rhythm, pause, and listener reactive performance.
+- Dialogue, confrontation, pursuit, handoff, and exit segments have a 180-degree axis / screen-direction lock.
+- Group scenes have count lock, varied faces, and no cloned extras.
+- Every Seedance segment has a segment complexity budget and one primary dramatic job.
+- Visual style references are separated into style text lock, safe style image, or asset/scene/prop references without global contamination.
 
 ## Gate 5: Generation Review
 

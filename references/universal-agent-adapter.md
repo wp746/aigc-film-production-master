@@ -65,6 +65,7 @@ references/upstream-screenwriting-director.md
 references/aigc-director-system.md
 references/aigc-production-handoff-contract.md
 references/downstream-image2-seedance-bridge.md
+references/image2-seedance-v192-downstream-contract.md
 references/final-prompt-delivery-contract.md
 references/model-platform-adapter.md
 references/postproduction-delivery.md

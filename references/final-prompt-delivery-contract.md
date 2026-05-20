@@ -25,6 +25,11 @@ Required structure:
 - asset/provenance code policy
 - do-not-change items
 
+## Language Strategy / 双语策略
+- CN prompts: user review and Chinese production understanding
+- EN prompts: cleaner Image2 labels and downstream visual references
+- Meaning lock: CN and EN are production-equivalent
+
 ## Asset Design Prompts
 ### A01-CN - Character / Scene / Prop
 ```text
@@ -69,14 +74,32 @@ Every final prompt package must include:
 - enough asset prompts to lock all recurring characters, scenes, hero props, product, UI/text plates, and style-safe look needs
 - storyboard prompts for every Seedance segment
 - one matching Seedance prompt per storyboard
-- CN review version and EN production version when Image2 labels are involved
+- CN review version and EN production version for every Image2 board and Seedance prompt
 - local 0:00-0:15 timecode for every Seedance segment
 - reference duties in every Seedance prompt
 - clean-frame text ban
 - in/out state for segment continuity
+- v1.9.2 board-system lock inside every Image2 prompt, not as a separate inherited section
+- board top title indexes: `A01 / ...`, `S01 / ...`
+- storyboard identity firewall: faceless/previs storyboards that do not redesign characters
+- segment complexity budget for each Seedance prompt
+- VOICE_LOCK and reactive listener performance for dialogue
+- 180-degree axis/screen-direction lock for dialogue, confrontation, pursuit, handoff, and exit scenes
+- crowd/extras count lock and varied-faces/no-cloned-faces guard when groups appear
+- visual-bible reference boundary: mixed style boards are not global Seedance references
 - post duties for exact text, subtitles, UI, title cards, sound, music, VFX, color, and delivery
 - target model/platform assumptions
 - no private source paths or client secrets in shareable prompt files
+
+## Lint Rule
+
+When filesystem access is available, run:
+
+```bash
+python3 scripts/prompt_lint.py outputs/[project-slug]-image2-seedance-prompts-v001.md
+```
+
+Hard failures must be repaired before final response. Warnings can remain only when they are structural false positives or non-material production notes.
 
 ## No-Handoff-Only Rule
 

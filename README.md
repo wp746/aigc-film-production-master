@@ -1,6 +1,6 @@
 # AIGC Film Production Master Skill
 
-> v1.6.0 | 2026-05-19
+> v1.7.0 | 2026-05-21
 
 一个面向 AIGC 影视创作者的工业级全链路总控 skill。
 
@@ -54,6 +54,7 @@ https://github.com/wp746/aigc-film-production-master/archive/refs/heads/main.zip
 - [模型与平台适配器](references/model-platform-adapter.md)
 - [Universal Agent Adapter](references/universal-agent-adapter.md)
 - [Image2 + Seedance 下游桥接](references/downstream-image2-seedance-bridge.md)
+- [Image2 + Seedance v1.9.2 下游合同](references/image2-seedance-v192-downstream-contract.md)
 - [最终提示词交付协议](references/final-prompt-delivery-contract.md)
 - [模块可见性与回装协议](references/module-visibility-and-reinsertion.md)
 - [长片 / 系列控制](references/longform-series-film-control.md)
@@ -125,7 +126,7 @@ v1.3.0 起，系统交互方式进一步明确：
 
 ```text
 aigc-film-production-master = 总制片 / 主编剧 / AIGC 导演 / 生产路由
-image2-seedance-control = 下游 Image2 资产板 + 故事板 + Seedance 2.0 提示词工厂
+image2-seedance-control = 下游 Image2 资产板 + 故事板 + Seedance 2.0 工业控制与提示词工厂
 ```
 
 也就是说：
@@ -134,6 +135,7 @@ image2-seedance-control = 下游 Image2 资产板 + 故事板 + Seedance 2.0 提
 - 剧本已存在时，它负责诊断、保留强项、做 AIGC 可生产化改造。
 - 进入生产前，它负责输出 AIGC 导演方案和生产交接包。
 - 下游真正写 Image2 / Seedance prompt 时，优先调用 `image2-seedance-control`。
+- 如果外部 Agent 没有安装该下游 skill，则按 `image2-seedance-v192-downstream-contract.md` 模拟其 v1.9.2 规则。
 
 ## 核心能力
 
@@ -586,7 +588,21 @@ Intake
 - 出片验收
 - Seedance 返修
 
-`aigc-film-production-master` 不替代它，而是把上游意图整理成它能直接使用的交接包。
+当前 master 对齐 `image2-seedance-control-skill` v1.9.2，新增吸收：
+
+- Seedance 5000 字符硬上限
+- 固定 Image2 board system lock
+- A/S 顶部标题索引
+- 故事板身份防火墙
+- 180 度轴线 / 屏幕方向锁
+- VOICE_LOCK 与听者反应表演
+- 群演数量锁与不同脸约束
+- 段落复杂度预算
+- 视觉圣经参考边界
+- 多参考图上传职责
+- 部门签核、出片评分和返修逻辑
+
+`aigc-film-production-master` 不替代它，而是把上游意图整理成它能直接使用的交接包；当外部 Agent 没有安装下游 skill 时，按 [Image2 + Seedance v1.9.2 下游合同](references/image2-seedance-v192-downstream-contract.md) 执行兼容版。
 
 ### 与 aigc-asset-board-skill
 
@@ -632,6 +648,7 @@ aigc-film-production-master/
     model-platform-adapter.md
     universal-agent-adapter.md
     downstream-image2-seedance-bridge.md
+    image2-seedance-v192-downstream-contract.md
     final-prompt-delivery-contract.md
     module-visibility-and-reinsertion.md
     longform-series-film-control.md
@@ -651,6 +668,7 @@ aigc-film-production-master/
   scripts/
     create_project_skeleton.py
     audit_skill_contract.py
+    prompt_lint.py
 ```
 
 ## 安装地址
@@ -817,6 +835,23 @@ python3 scripts/create_project_skeleton.py "项目名" --root ./projects
 - `version_log.csv`
 
 ## 版本记录
+
+### v1.7.0 | 2026-05-21
+
+合并新版 `wp746/image2-seedance-control-skill` v1.9.2 的下游工业控制规则。
+
+新增：
+
+- `references/image2-seedance-v192-downstream-contract.md`：把下游 v1.9.2 的关键能力沉淀为 master 可调用合同。
+- `scripts/prompt_lint.py`：同步新版下游 lint，Seedance 字符上限更新为 5000。
+
+更新：
+
+- `downstream-image2-seedance-bridge.md`：从 2000 字符旧约束升级到 5000 字符，并接入 v1.9.2 兼容合同。
+- `final-prompt-delivery-contract.md`：补齐双语策略、board system lock、A/S 顶部标题、故事板身份防火墙、VOICE_LOCK、反应表演、180 度轴线、群演数量锁、复杂度预算和 lint 规则。
+- `qa-risk-gates.md`：新增下游 v1.9.2 生产门禁。
+- `aigc-production-handoff-contract.md`：标记当前下游兼容目标为 `image2-seedance-control-skill` v1.9.2。
+- `universal-agent-adapter.md`：让外部 Agent 在没有安装下游 skill 时，也能加载 v1.9.2 合同模拟执行。
 
 ### v1.6.0 | 2026-05-19
 

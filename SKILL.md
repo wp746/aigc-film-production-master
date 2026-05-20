@@ -45,7 +45,7 @@ If `save-the-cat-screenwriting-skill` is available, use it for upstream story de
 10. Convert the story into an AIGC director plan before downstream production. Use `references/aigc-director-system.md`.
 11. Create a strict handoff packet using `references/aigc-production-handoff-contract.md`.
 12. Before final prompts, run `references/model-platform-adapter.md` so the same creative design is adapted to the target model/platform limits.
-13. For Image2/Seedance production, route into `references/downstream-image2-seedance-bridge.md` and enforce `references/final-prompt-delivery-contract.md`.
+13. For Image2/Seedance production, route into `references/downstream-image2-seedance-bridge.md`, apply `references/image2-seedance-v192-downstream-contract.md`, and enforce `references/final-prompt-delivery-contract.md`.
 14. For final assembly, sound, subtitles, VFX overlays, color, and delivery, use `references/postproduction-delivery.md`.
 15. For private assets, client work, brand, celebrity, reference-style, platform, contest, music, voice, or IP-sensitive work, use `references/privacy-provenance-governance.md` and `references/compliance-rights-ip-gate.md`.
 16. For module revisions, user approvals, or iterative production, use `references/versioning-feedback-loop.md`.

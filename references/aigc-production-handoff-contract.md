@@ -60,7 +60,7 @@ Every handoff must be specific enough that a downstream prompt factory can produ
 - CTA / next action:
 
 ## Downstream Instruction
-Use `image2-seedance-control` as the prompt factory. It owns final Image2 asset prompts, Image2 storyboard prompts, Seedance prompts, lint, upload order, acceptance scoring, and repair SOP.
+Use `image2-seedance-control` as the prompt factory. It owns final Image2 asset prompts, Image2 storyboard prompts, Seedance prompts, lint, upload order, acceptance scoring, and repair SOP. The current master compatibility target is `image2-seedance-control-skill` v1.9.2; apply `image2-seedance-v192-downstream-contract.md` before final prompt delivery.
 ```
 
 ## Production Duty Vocabulary
