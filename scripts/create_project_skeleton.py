@@ -47,8 +47,91 @@ def main() -> None:
     project_dir = Path(args.root).expanduser().resolve() / slugify(args.title)
     project_dir.mkdir(parents=True, exist_ok=True)
 
+FOLDER_READMES = {
+    "00_sources": (
+        "# 00 Sources\n\n"
+        "Place all original source materials here, including:\n"
+        "- Initial ideas or one-sentence concepts\n"
+        "- Client briefs and brand guides\n"
+        "- Reference images or video links\n\n"
+        "Refer to `references/source-ingestion-normalization.md` for guidelines on source ingestion.\n"
+    ),
+    "01_story_bible": (
+        "# 01 Story Bible\n\n"
+        "Store story/project bibles, character designs, and worldbuilding documents here.\n\n"
+        "Refer to:\n"
+        "- `references/creative-development-orchestration.md`\n"
+        "- `references/upstream-screenwriting-director.md`\n"
+    ),
+    "01_asset_database": (
+        "# 01 Asset Database\n\n"
+        "This folder contains the CSV tracking sheets for production continuity:\n"
+        "- `characters.csv` / `character_states.csv`\n"
+        "- `scenes.csv` / `scene_states.csv`\n"
+        "- `props.csv` / `prop_states.csv`\n"
+        "- `shots.csv` / `seedance_takes.csv`\n\n"
+        "Refer to `references/asset-database-ledger.md` for schema details.\n"
+    ),
+    "03_aigc_director": (
+        "# 03 AIGC Director\n\n"
+        "Store AIGC Director Feasibility Plans, Segment Plans, and Handoff Packages here.\n\n"
+        "Refer to:\n"
+        "- `references/aigc-director-system.md`\n"
+        "- `references/aigc-production-handoff-contract.md`\n"
+    ),
+    "04_image2_storyboards": (
+        "# 04 Image2 Storyboards\n\n"
+        "Store Image2 asset board prompts and storyboard prompts here.\n\n"
+        "Refer to:\n"
+        "- `references/downstream-image2-seedance-bridge.md`\n"
+        "- `references/image2-seedance-v192-downstream-contract.md`\n"
+    ),
+    "05_seedance_prompts": (
+        "# 05 Seedance Prompts\n\n"
+        "Store finalized, copy-ready Seedance 2.0 text prompts here.\n\n"
+        "Refer to:\n"
+        "- `references/final-prompt-delivery-contract.md`\n"
+        "- `references/image2-seedance-v192-downstream-contract.md`\n"
+    ),
+    "09_postproduction": (
+        "# 09 Postproduction\n\n"
+        "Store post-production specifications here, including:\n"
+        "- EDL (Edit Decision Lists)\n"
+        "- Voiceover / ADR cue sheets\n"
+        "- Music and sound design cue sheets\n"
+        "- SRT subtitles and VFX overlays\n\n"
+        "Refer to `references/postproduction-delivery.md`.\n"
+    ),
+    "10_delivery": (
+        "# 10 Delivery\n\n"
+        "Store final master video files, platform-specific exports, and release approvals here.\n\n"
+        "Refer to `references/postproduction-delivery.md`.\n"
+    ),
+}
+
+
+def write_folder_readme(project_dir: Path, folder: str) -> None:
+    if folder in FOLDER_READMES:
+        f_dir = project_dir / folder
+        f_dir.mkdir(exist_ok=True)
+        readme_path = f_dir / "README.md"
+        if not readme_path.exists():
+            readme_path.write_text(FOLDER_READMES[folder], encoding="utf-8")
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("title", help="Project title")
+    parser.add_argument("--root", default=".", help="Output root directory")
+    args = parser.parse_args()
+
+    project_dir = Path(args.root).expanduser().resolve() / slugify(args.title)
+    project_dir.mkdir(parents=True, exist_ok=True)
+
     for folder in FOLDERS:
-        (project_dir / folder).mkdir(exist_ok=True)
+        f_dir = project_dir / folder
+        f_dir.mkdir(exist_ok=True)
+        write_folder_readme(project_dir, folder)
 
     index = project_dir / "PROJECT_INDEX.md"
     if not index.exists():

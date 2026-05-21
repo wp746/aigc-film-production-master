@@ -45,7 +45,7 @@ If `save-the-cat-screenwriting-skill` is available, use it for upstream story de
 10. Convert the story into an AIGC director plan before downstream production. Use `references/aigc-director-system.md`.
 11. Create a strict handoff packet using `references/aigc-production-handoff-contract.md`.
 12. Before final prompts, run `references/model-platform-adapter.md` so the same creative design is adapted to the target model/platform limits.
-13. For Image2/Seedance production, route into `references/downstream-image2-seedance-bridge.md`, apply `references/image2-seedance-v192-downstream-contract.md`, and enforce `references/final-prompt-delivery-contract.md`.
+13. For Image2/Seedance production, route into `references/downstream-image2-seedance-bridge.md`, apply the master `references/aigc-audio-visual-grammar-bible.md`, enforce `references/image2-seedance-v192-downstream-contract.md`, and apply `references/final-prompt-delivery-contract.md`.
 14. For final assembly, sound, subtitles, VFX overlays, color, and delivery, use `references/postproduction-delivery.md`.
 15. For private assets, client work, brand, celebrity, reference-style, platform, contest, music, voice, or IP-sensitive work, use `references/privacy-provenance-governance.md` and `references/compliance-rights-ip-gate.md`.
 16. For module revisions, user approvals, or iterative production, use `references/versioning-feedback-loop.md`.
@@ -110,6 +110,17 @@ The upstream system must never hand vague directing language to the downstream s
 - Final prompt packages must be operator-ready, not essays.
 - For full workflow requests, the final answer must link to the generated prompt Markdown file, not merely describe what should be done next.
 
+## Multi-Agent System (MAS) Architecture
+
+When filesystem access is available, the master agent can coordinate specialized sub-agents to collaborate on production. The blueprints for these agents reside in `agents/sub_agents/`:
+
+- **00 Master Producer** ([00_master_producer.md](file:///Users/wangpeng/Documents/Antigraviti/film%20production/agents/sub_agents/00_master_producer.md)): Central entry coordinator and task router.
+- **01 Upstream Writer** ([01_upstream_writer.md](file:///Users/wangpeng/Documents/Antigraviti/film%20production/agents/sub_agents/01_upstream_writer.md)): Develops Save-the-Cat beats, script outlines, and injects genre playbooks.
+- **02 AIGC Director** ([02_aigc_director.md](file:///Users/wangpeng/Documents/Antigraviti/film%20production/agents/sub_agents/02_aigc_director.md)): Translates narrative scripts into visual duties and blocks camera segments.
+- **03 Asset Continuity Manager** ([03_asset_continuity_manager.md](file:///Users/wangpeng/Documents/Antigraviti/film%20production/agents/sub_agents/03_asset_continuity_manager.md)): Logs IDs into CSV databases to prevent visual character/location drift.
+- **04 Prompt Factory** ([04_prompt_factory.md](file:///Users/wangpeng/Documents/Antigraviti/film%20production/agents/sub_agents/04_prompt_factory.md)): Bakes the final dual-language Image2 and Seedance 2.0 prompts.
+- **05 QA Risk Gatekeeper** ([05_qa_risk_gatekeeper.md](file:///Users/wangpeng/Documents/Antigraviti/film%20production/agents/sub_agents/05_qa_risk_gatekeeper.md)): Audits prompts against the static linter and compliance guidelines.
+
 ## Local Automation
 
-Use `scripts/create_project_skeleton.py` when the user wants a production folder structure for a new AIGC project. Use `scripts/audit_skill_contract.py` after editing this skill to check that required references remain wired into `SKILL.md` and `README.md`.
+Use `scripts/create_project_skeleton.py` when the user wants a production folder structure for a new AIGC project. Use `scripts/real_multi_agent.py` as the primary industrial-grade single-entry orchestrator for real LLM generations (or high-fidelity dry-runs). Use `scripts/simulate_multi_agent.py` to run a simplified interactive terminal-based simulation showing the collaboration between the sub-agents. Use `scripts/audit_skill_contract.py` after editing this skill to check that required references remain wired into `SKILL.md` and `README.md`.

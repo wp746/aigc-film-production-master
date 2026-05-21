@@ -15,12 +15,12 @@ from pathlib import Path
 SEEDANCE_CHAR_LIMIT = 5000
 
 FENCE_RE = re.compile(
-    r"^###\s+(?P<title>[^\n]*Seedance[^\n]*)\n(?:[ \t]*(?:>[^\n]*)?\n)*[ \t]*```text\n(?P<body>.*?)\n```",
+    r"^###\s+(?P<title>[^\n]*Seedance[^\n]*)\n(?:[ \t]*(?:>[^\n]*)?\n)*[ \t]*```text\n(?P<body>.*?)\n```[ \t]*$",
     re.MULTILINE | re.DOTALL,
 )
 STORYBOARD_TITLE_RE = re.compile(r"^###\s+(?P<title>[^\n]*(?:Storyboard|故事板)[^\n]*)$", re.MULTILINE)
 SHOT_RE = re.compile(r"\bS(?P<num>\d{2})\b")
-CHINESE_DIALOGUE_RE = re.compile(r"[“\"『「](?P<line>[\u4e00-\u9fff，。！？、；：]{4,})[”\"』」]")
+CHINESE_DIALOGUE_RE = re.compile(r"[“\"『「](?P<line>(?=[^”\"』」\n]*[\u4e00-\u9fff])[^”\"』」\n]{4,})[”\"』」]")
 TIMECODE_RE = re.compile(
     r"(?P<start_min>\d+):(?P<start_sec>\d{2})(?:\.\d+)?\s*[-–]\s*(?P<end_min>\d+):(?P<end_sec>\d{2})(?:\.\d+)?"
 )
@@ -121,7 +121,12 @@ def seconds(minutes: str, secs: str) -> int:
 
 def is_local_timecode(match: re.Match[str]) -> bool:
     """Require unambiguous local mm:ss notation inside one Seedance segment."""
-    if match.group("start_min") != "0" or match.group("end_min") != "0":
+    try:
+        start_min = int(match.group("start_min"))
+        end_min = int(match.group("end_min"))
+    except ValueError:
+        return False
+    if start_min != 0 or end_min != 0:
         return False
     return seconds(match.group("end_min"), match.group("end_sec")) <= 15
 

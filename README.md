@@ -51,6 +51,7 @@ https://github.com/wp746/aigc-film-production-master/archive/refs/heads/main.zip
 - [短视频留存与传播门禁](references/retention-performance-gate.md)
 - [AIGC 导演系统](references/aigc-director-system.md)
 - [AIGC 生产交接协议](references/aigc-production-handoff-contract.md)
+- [AIGC 影视视听语言圣经](references/aigc-audio-visual-grammar-bible.md)
 - [模型与平台适配器](references/model-platform-adapter.md)
 - [Universal Agent Adapter](references/universal-agent-adapter.md)
 - [Image2 + Seedance 下游桥接](references/downstream-image2-seedance-bridge.md)
@@ -792,6 +793,53 @@ https://github.com/wp746/aigc-film-production-master
 后台先做 AIGC 生产交接，再直接生成最终 Image2 + Seedance 双语提示词文件。
 ```
 
+## 多智能体协同（Multi-Agent System）架构
+
+本系统已从单一的“指令集 Skill”升级为高度协同的**多智能体系统（MAS）**。在运作时，一个主控智能体（Master Agent）将作为唯一入口调度 5 个高度分工的子智能体（Sub-Agents），环环相扣地达成最终出片目标：
+
+- **00 Master Producer** ([00_master_producer.md](file:///Users/wangpeng/Documents/Antigraviti/film%20production/agents/sub_agents/00_master_producer.md)) - **总制片与路由**：对接创作者输入，确定作品形态与交付标准，对齐 `Source Packet`，整合并分发任务。
+- **01 Upstream Writer** ([01_upstream_writer.md](file:///Users/wangpeng/Documents/Antigraviti/film%20production/agents/sub_agents/01_upstream_writer.md)) - **创意编剧**：构建爆款故事引擎，提取人物命运弧，打磨 Save the Cat 节拍，执行反俗套把控，最终锁定脚本。
+- **02 AIGC Director** ([02_aigc_director.md](file:///Users/wangpeng/Documents/Antigraviti/film%20production/agents/sub_agents/02_aigc_director.md)) - **AIGC导演**：负责分镜视听，划分 Image2/Seedance 职责；审查复杂镜头的 AIGC 生成可行性，剥离文字、UI、群戏或复杂动作交给后期（Post Duties）。
+- **03 Asset Continuity Manager** ([03_asset_continuity_manager.md](file:///Users/wangpeng/Documents/Antigraviti/film%20production/agents/sub_agents/03_asset_continuity_manager.md)) - **制片账本**：在后台建立 CSV 资产数据库（角色、场景、道具及镜头状态），执行全局视觉对齐与防跑偏（Drift）警告。
+- **04 Prompt Factory** ([04_prompt_factory.md](file:///Users/wangpeng/Documents/Antigraviti/film%20production/agents/sub_agents/04_prompt_factory.md)) - **提示词工厂**：负责最硬核的 Prompt 烘焙，输出符合 5000 字符限制、带有 local 0:00-0:15 时间码及 clean-frame 规约的 Image2/Seedance 2.0 中英双语提示词。
+- **05 QA Risk Gatekeeper** ([05_qa_risk_gatekeeper.md](file:///Users/wangpeng/Documents/Antigraviti/film%20production/agents/sub_agents/05_qa_risk_gatekeeper.md)) - **风控QA与门禁**：对最终提示词执行 10 重质量门禁，并自动运行 `prompt_lint.py` 静态审计，审查品牌版权、名人 likeness 肖像以及平台投放规则，输出最终 verdict。
+
+### 多智能体协作仿真器 (Dry-Run / Simulation)
+
+仓库提供了一个交互式的多智能体协同仿真工具，用以向您演示这 6 个智能体在接单后是如何发生“化学反应”的：
+
+```bash
+python3 scripts/simulate_multi_agent.py "后悔配送员" --root ./projects
+```
+
+运行后将：
+1. 动用总制片创建带有各级 README 指引的项目生产骨架。
+2. 动用编剧锁定故事，动用导演设计分镜与后期分割，动用账本更新 CSV 数据库。
+3. 动用提示词工厂拼装高匹配的 operator 级双语提示词文件。
+4. 动用 QA 审计自动触发优化后的 `prompt_lint.py`，输出零缺陷通过（Verdict: PASS）的总审批。
+5. 将出厂成果完美交付至 `outputs/[项目名]-image2-seedance-prompts-v001.md`。
+
+### 工业级多智能体协同管线 (Real API-Backed MAS)
+
+如果您想测试真实的工业级大模型协同效果，可以使用 `scripts/real_multi_agent.py`。这是一个一键式端到端真实智能体调度框架：
+
+```bash
+# 1. 配置您的 OpenAI 兼容接口的环境变量（兼容 OpenAI, Gemini OpenAI API, DeepSeek 等）
+export OPENAI_API_KEY="您的API_KEY"
+export OPENAI_BASE_URL="https://api.openai.com/v1"  # 或其他兼容端点
+export LLM_MODEL="gpt-4o"  # 目标模型名称
+
+# 2. 一键启动工业级生成（选择适配的类型：suspense-thriller, short-drama, commercial-tvc 等）
+python3 scripts/real_multi_agent.py "迷雾深渊" --genre "suspense-thriller" --root ./projects
+```
+
+**运行特征**：
+- **动态加载圣经 (Bibles)**：各子智能体调度时，系统会自动提取 `references/genre-playbooks/` 下的对应影视类型圣经（例如 `suspense-thriller.md` 中的错位细节、信息差、分镜锁定等），并作为系统 Prompt Context 实时注入，保证生成的剧本和提示词拥有电影级视听质感。
+- **自动连续性数据库 (Asset CSV Ledger)**：Continuity Manager 智能体输出后，管线会自动用正则提取其生成的角色和场景 CSV 结构，并动态写入项目目录下的 `01_asset_database/characters.csv` 和 `scenes.csv`。
+- **静态 Linter 强验证门禁**：Factory 产出后自动触发 `prompt_lint.py`，只有 0 Critical Errors 时方可发出 Greenlight Verdict，杜绝格式、字幕、动作漂移风险。
+- **零依赖设计**：基于 Python 标准库 `urllib.request` 编写，不依赖任何第三方库，在任何干净的环境下均能一键完美运行。
+- **无 API Key 降级**：无 API Key 时自动以 Dry-Run 模式启动，根据选定类型生成高保真本地影视样例数据。
+
 ## 本地项目骨架脚本
 
 仓库内置一个轻量脚本，用于创建 AIGC 项目生产目录：
@@ -835,6 +883,20 @@ python3 scripts/create_project_skeleton.py "项目名" --root ./projects
 - `version_log.csv`
 
 ## 版本记录
+
+### v2.0.0 | 2026-05-22
+
+重磅升级：全方位融合 AIGC 影视视听语言圣经系统与多智能体 GitHub 开源就绪。
+
+新增：
+
+- `references/aigc-audio-visual-grammar-bible.md`：核心视听圣经系统。覆盖 ARRI/Cooke 镜头分配、180° 越轴防漂移、 Chiaroscuro 明暗构图、 角色场景 Seed 级 CSV 对齐、Voice Lock 呼吸台词、特效粒子分流及 SEGMENT_BUDGET 渲染限制。
+- `github_agent_setup.md`：多智能体 GitHub 一键托管与 Coze、Dify、Custom GPTs、OpenClaw 分发部署指南。
+
+更新：
+
+- 升级全部 6 大智能体系统蓝图 (`agents/sub_agents/`)，创意编剧全面融合多维度脚本自审、漏洞补全及可行性评估机制，导演与提示词工厂深度贯彻视听语言圣经。
+- `scripts/real_multi_agent.py`：升级多智能体管线主控，自动提取 continuity CSV，调用静态 linter 并自动注入视听语言圣经。
 
 ### v1.7.0 | 2026-05-21
 
