@@ -1,118 +1,167 @@
-# AIGC Audio-Visual Grammar Bible (AIGC影视视听语言圣经)
+# AIGC Audio-Visual Grammar & Layout Holy Bible (AIGC影视视听语言与排版设计圣经)
 
-This definitive specification establishes the industrial-grade audio-visual grammar and strict operational contracts for AIGC-enabled filmmaking (e.g. Image2 + Seedance 2.0 pipeline). Any collaborative agent or system operator must execute prompt engineering, scene blocking, asset tracking, and post-production integration in absolute alignment with these rules to eliminate style/character drift, preserve cinematic rhythm, and respect model capability ceilings.
-
----
-
-## 1. Cinematography & Lens Grammar (运镜与切镜圣经)
-
-Vague words like "cinematic," "movie style," or "epic camera angle" are forbidden. Every shot must define its project camera package, lens family, exact focal length, and motivated movement vector.
-
-### 1.1 Camera and Lens Lock
-- **A-Cam/Primary Package**: `ARRI Alexa 35 / Cooke Panchro/i Classic Prime` (delivers organic cinematic warmth, smooth roll-off, and painterly bokeh).
-- **B-Cam/High-Contrast Package**: `RED V-RAPTOR / Panavision Primo` (delivers hyper-crisp, high-fidelity modern textures, perfect for high-speed motion or brand TVC).
-- **Anamorphic Lens Lock**: `Sony Venice / Panavision Auto Panatar Anamorphic` (for film-grade wide narratives, 2.39:1 aspect ratio, horizontal blue lens flares, and oval bokeh).
-
-### 1.2 Motivated Motion Formulas
-Every camera movement must have a narrative reason. Forbid random handheld jitter and chaotic rotations.
-- **Narrative Reveal (Slow Push-In)**: `A slow motivated slow dolly-in, 50mm, camera gradually pushing in on the protagonist's eyes, background compression, shallow depth of field.`
-- **Dread/Suspense (Locked Static)**: `A locked-off tripod shot, 35mm wide angle, stable frame, capturing the eerie stillness of the environment, no camera movement.`
-- **Action/Pursuit (Axis-Locked Pan)**: `A motivated whip pan, tracking motion parallel to the 180-degree axis, keeping character position left-to-right consistent.`
-
-### 1.3 Shot Seams & Cutting Rules
-- **One Segment, Dual Shots Max**: In a single 5-15s Seedance timeline, never exceed **2 shots** or **8 storyboard panels** to prevent semantic collapse.
-- **Seam Matches**: If segment N ends in a medium close-up, segment N+1 must start in the exact same focal distance or transition using a clean visual match-cut (e.g. tracking eyes, matching movement velocity).
-- **The Neutral-Axis Bridge**: Crossing the 180-degree line is strictly forbidden unless bridged by an exact neutral-axis shot (directly on the line of action) to maintain audience spatial legibility.
+本圣经为 AIGC（如 Image2 生图 与 Seedance 2.0 视频生成）工业级影视生产的最高技术规范与操作契约。所有协同智能体与操作员必须无条件、严丝合缝地执行本规范，以彻底杜绝面部/道具/空间漂移，确保电影级叙事呼吸感，最大化榨干模型性能。
 
 ---
 
-## 2. Composition & Lighting Grammar (构图与光影圣经)
+## 1. 物理画布与中英文双轨输出规范 (Substrate & Dual-Track Standard)
 
-AIGC models easily default to generic flat lighting or overly saturated game-engine graphics. This section binds all visual assets to motivative, painterly cinematic lighting.
+AIGC 图像模型默认会产生随机的画布背景（如牛皮纸、报纸、油纸纹理等），并且模型在渲染中文小字时极其容易崩坏字形。为实现零缺陷工业化交接，特制定此画布与字形物理标准：
 
-### 2.1 motivated Lighting Rules
-- **Chiaroscuro (明暗对比)**: Define a single clear key light source and contrast it with deep shadow zones (e.g. single candle, neon sign, desk lamp).
-- **Volumetric Light**: Enforce realistic air density parameters: `volumetric haze, dust particles dancing in the light beam, soft light scattering.`
-- **Color Temperature Lock**: Avoid random rainbows. Enforce a strict dual-tone palette: `restrained teal ambient night light contrasted with a warm orange key light from a single streetlamp, 3200k key / 5600k fill.`
+### 1.1 画板基底绝对锁定 (Storyboard Substrate Solid Lock)
+* **硬性标准**：所有资产图（角色、场景、道具）及技术故事板的背景一律硬编码锁定为 **“黑曜石深灰色磨砂质感背景配极细网格线”**（Matte Obsidian Slate Gray with minimalist fine grid lines）。
+* **技术价值**：彻底消除牛皮纸、羊皮纸等随机纸张噪声，保证所有分镜和资产图的色彩饱和度与背景灰阶绝对一致，便于视频模型（Seedance 2.0）读取。
 
-### 2.2 Digital storyboard Board Substrate
-Every Image2 storyboard layout must use the board-system lock to keep dimensions and aspect ratios stable:
-- **Aspect Ratio Lock**: Specify aspect ratio in prompts: `2.39:1 cinemascope aspect ratio.`
-- **Matte Warm-Gray Substrate**: Define the board background to prevent AI from adding mixed textures or kraft paper noise: `rendered on a clean, matte warm-gray production board substrate, minimalist presentation.`
-- **Visible Frame Titles**: Use strict panel indexes: `S01 panel / S02 panel` corresponding to the timeline segments.
-
----
-
-## 3. Character & Scene Continuity Preservation (角色与场景一致性圣经)
-
-Consistency is the ultimate dividing line between amateur prompts and industrial-grade video production. We solve this by splitting asset definition from narrative actions and applying strict database keys.
-
-### 3.1 Character Consistency Protocols (`CHAR_*`)
-- **Visual Identity Locks**: Never redefine a character's face in the storyboard. Lock character anchors in `characters.csv` and refer to them:
-  - Facial features: `worn eyes, sharp jawline, high cheekbones, asymmetrical brow.`
-  - Fixed wardrobe: `signature yellow worn rainjacket, grey wool trenchcoat, never changing wardrobe.`
-- **No Face Redesign in Storyboards**: Storyboards must treat characters as faceless silhouettes or outline blocks: `CHAR_HERO is a faceless grey outline, focusing purely on body language and physical blocking, preserving face reference.`
-
-### 3.2 Spatial Geography & Scene Locks (`SCENE_*`)
-- **Fixed Scene Anchors**: Scenes must establish unchanging physical landmarks to anchor the spatial math: `SCENE_ALLEY is locked with a prominent flashing red neon sign on the left wall and wet asphalt pavement reflecting the neon.`
-- **Locked Axis Safe Zones**: Define where the camera can and cannot look: `Camera is locked within the 180-degree safe zone, viewing SCENE_ALLEY from a fixed 45-degree angle, background architecture remains stable.`
-
-### 3.3 Prop Consistency & Hand Logic (`PROP_*`)
-- **Prop Identity Code**: Lock crucial plot items: `PROP_CLOCK (wooden grandfather clock with three counter-clockwise hands).`
-- **Hand Logic Guard**: Forbid distorted hands or overlapping fingers: `CHAR_HERO's hand is clean and anatomically correct, holding PROP_CLOCK by the wooden frame, no finger glitches, no distorted joints.`
+### 1.2 中英文双路提示词与图片输出 (Bilingual Dual-Track Outputs)
+为兼顾“人类直观理解”与“AI模型零误差无损运行”，系统在输出任何提示词包时，必须自动分裂为独立双轨：
+1. **中文参考版提示词 (`*_prompts_CN_reference.md`)**：
+   * **功能**：用于中文制片人、导演和操作员直观审查、调整剧本与视觉意图。
+   * **标签渲染**：指示 Image2 生成带有中文标注和标签的图片，方便人眼核对。
+2. **英文无损运行版提示词 (`*_prompts_EN_executable.md`)**：
+   * **功能**：用于直接输入 AI 模型进行无损生图与视频跑图。
+   * **标签渲染**：图片内所有排版、坐标、面板索引一律采用**纯英文**（如 `Panel A`, `Side View`, `Grid 1`）。由于模型天然对英文拼写有完美的拓扑保持力，英文版本能 100% 杜绝文字扭曲、乱码或崩坏，确保下游完美读取。
 
 ---
 
-## 4. Pacing, Sound Cues, VFX & Dialogue (台词、音效、特效与后期圣经)
+## 2. 角色资产设计圣经 (Character Asset Layout Bible)
 
-Industrial pipelines do not expect AIGC video models to render high-fidelity text or lip-sync complex sentences out of the box. We split responsibilities between Seedance rendering and Post-Production.
+为了彻底锁定角色面部 seed 并在不同镜头中无漂移复现，角色资产卡必须遵循以下严格的排版布局与剧情驱动模块：
 
-### 4.1 Dialogue & Voice Lock (`VOICE_LOCK`)
-- **Speech-Rate and Pause Cues**: Dialogue must translate to pacing and physical breathing in the prompt:
-  ```text
-  VOICE_LOCK: Lin (45yo male, low gravelly voice, slow breathy rhythm, pauses before key words).
-  Performance beat: Lin hesitates, takes a sharp breath, eyes darting down, lips parting slightly, spoken line: “...太晚了。”
-  ```
-- **Lip-Sync Safe Prompts**: Keep jaw movement natural and simple. Forbid rapid mouth shapes that trigger model artifacting: `subtle lip movement, slow deliberate speech rhythm, no exaggerated jaw distortion.`
+### 2.1 角色卡标准网格排版 (Standard Layout Grid)
+单张 16:9 画布必须严格划分为标准的模块化网络，排版严密锁定，拒绝任何随机堆砌：
+* **模块一：全身四视图 (4-View Full Body Grid)**：从左到右依次为正视图（Front View）、侧视图（Side View）、后视图（Back View）、3/4 侧身斜视步态图（3/4 Walking Pose）。角色在此四视图中身着标准剧照服装（服装面料与颜色硬性声明），身体比例保持一致。
+* **模块二：人脸中性特写 (Neutral Facial Close-up)**：高解析度的正面素颜/中性表情人脸特写，光影均匀（柔和三点光），作为最核心的 face seed 图像。
+* **模块三：服装纹理特写 (Wardrobe & Texture Detail)**：局部微距镜头（Macro close-up），清晰展示服装材质（如“粗布长衫的经纬织纹”、“皮革旅行箱的磨损划痕”），供视频生成参考。
 
-### 4.2 Integrated Sound Design Cues
-Seedance prompts must write sound cues directly into the text code blocks to guide downstream sound effects (SFX) and ambient scoring:
-- `Ambient Room Tone`: `heavy rain pouring outside, distant low rumbling thunder, room tone buzz.`
-- `Foley Indicators`: `faint mechanical clicking of clock gears, footsteps splashing on wet pavement, deep breath.`
+### 2.2 剧情驱动的可变模块 (Story-Driven Dynamic Sheets)
+角色资产不能是无用的静态堆砌，必须紧密结合剧本需求设计以下**可变参考模块**：
+* **表情情绪变化表 (Emotions Sheet)**：若剧本中有大喜、大悲、极度惊恐等情绪撕裂（如李侠得知战友牺牲），必须有一组 4-Grid 表情卡，展示特定情绪下眼睑、嘴角及面部肌肉的物理变化。
+* **发型与时间跳跃变化表 (Hairstyle & Temporal Shifts)**：若剧情存在年代跨度（如李侠从1945年到1990年），角色卡必须设计并标出不同年龄、发型（黑发到全白）的对比视图。
+* **物理状态与伤残装束表 (Physical Status & Costume Changes)**：若剧情需要角色处于受伤、被捕、或伪装状态，必须绘制对应的辅助资产模块（如“领口撕裂、脸上带有尘土与血痕的状态”）。
 
-### 4.3 Visual Effects & Particle Separation (`VFX_*`)
-- **Model Feasibility Check**: Heavy physics simulations (such as complex explosions, shattering glass, or swirling water vortexes) must be simplified or offloaded to Post-production overlay.
-- **AIGC Feasible VFX**: Focus on simple particle paths: `subtle rising dust motes, thin drifting smoke trails, falling raindrops reflecting key light, no chaotic simulation.`
+### 2.3 辅助角色与群像资产分化规范 (Group Swarm & Auxiliary Protocols)
+* **人物密度上限**：单张 16:9 画布最多同时呈现 **2 个** 辅助角色。如果超过 2 人，必须自动分页在下一张画布上设计。
+* **群像资产区分圣经 (Crucial Distinctions)**：
+  1. **年龄区分**：皱纹深度、眼角耷拉度、面部肌肉松弛度必须有断代级差异。
+  2. **职业区分**：服装粗糙度、配饰（如首长的布帽、报童的斜挎挎包、特务的皮手套）绝对区分。
+  3. **发型服饰区分**：长短、发线、灰白比例、服装色相绝对不同。
+  4. **高矮胖瘦区分**：骨架宽度、肩宽比、头身比在多视图中硬性拉开。
+  5. **五官长相区分 (核心)**：对于“统一制服”（如八路军或国民党士兵）群像，必须将提示词重点锁死在**面部骨骼、眼距、颧骨高低、鼻梁弧度**的巨大差异上，拒绝克隆脸。
 
 ---
 
-## 5. Model Cap & Complexity Budget Rules (模型上限与复杂度圣经)
+## 3. 场景设计圣经 (Scene Layout Bible)
 
-Every Seedance prompt must specify a `SEGMENT_BUDGET` to balance elements and keep render success rates above 95%.
+场景参考图是视频生成保持空间感不缩水的唯一保障，必须遵守以下圣经级参数：
 
-### 5.1 The Segment Budget
-Before drafting a Seedance block, compute:
-- **Maximum Named Characters**: 2 per segment.
-- **Maximum Background Extras**: 5, locked with counts (`exactly 3 background extra figures, varied hairlines, no cloned faces`).
-- **Maximum Active Physics**: 1 dynamic force (e.g. only rain, or only wind).
+### 3.1 场景九宫格排版标准 (9-Angle Panorama Grid)
+每个主场景必须以九宫格（3x3 Layout Grid）在一张画布上完美呈现，拒绝多余的标注：
+* **1-3 格：全局空间视角**（远景、中景、俯拍鸟瞰图，明确划分室内布局与室外空间衔接）。
+* **4-6 格：特定灯光日夜转换**（白天冷天光自然漫射、黄昏金色逆光、夜晚高反差明暗对比 Chiaroscuro 动机光）。
+* **7-9 格：环境安全区与局部特写**（如“写字台上的玻璃烟灰缸特写”、“窑洞门前挂着的红辣椒与干玉米细节”）。
 
-### 5.2 Clean Frame Rule
-To prevent AI models from generating random watermark noise, caption gibberish, or text overlays, every prompt must enforce the Clean Frame Lock:
+### 3.2 空间地理与人物占位锁定 (Spatial Mapping & Anchors)
+* **人物占位安全区 (Character Placement Safe Zone)**：图上必须以英文网格坐标明确标注人物的站位界限。例如，声明 `CHAR_PLACEHOLDER_GREY is limited to Sector B2 (next to the wooden table) and Sector C2 (walking path)`。
+* **防干扰静默标注**：九宫格内仅保留纯英文的格位代码（如 `Cam_A_Wide`, `Cam_B_Detail`），严禁标出任何杂乱的说明文字，防止 Seedance 在读取时误将文本识别为画面中的实物进行渲染。
+
+---
+
+## 4. 道具设计圣经 (Prop Layout Bible)
+
+反复出现的重点道具是情节流转的线索，必须作为独立高精度资产锁定：
+
+### 4.1 道具三视图与爆炸图规范 (Multi-Angle Exploded View)
+对于剧本中承载核心功能或出现频率极高的道具（如李侠的“收音机改装发报机 `PROP_RADIO_TRANSMITTER`”、“磨损复古皮革行李箱 `PROP_LEATHER_SUITCASE`”）：
+* **排版规范**：在一张 16:9 画布上，展示道具的正面（Front）、侧面（Side）及**内部细节爆炸图/结构拆解图**（如收音机拆开后内部密密麻麻的真空管与电子元器件）。
+* **精确定位引用机制 (Referencing Coordinates)**：
+  在道具卡的英文版中，对重要部件使用标准坐标标签圈定（例如：在发报机电键处标注 `Label_Key`，在天线线圈处标注 `Label_Coil`）。后续 Seedance 提示词中即可精准引用：`@AssetCard_PROP_RADIO_TRANSMITTER(Label_Key)`。
+
+---
+
+## 5. 故事板设计圣经 (Storyboard Layout Bible)
+
+故事板是连接导演思维与 AIGC 模型的桥梁。**它的核心作用是：用画面把 Seedance 提示词写不出来的物理轨迹和空间关系画出来，把文字容易产生歧义的视觉设计死死钉住！**
+
+### 5.1 故事板角色无脸化灰格人偶占位符机制 (Faceless Silhouette Storyboard)
+* **绝对红线**：为了防止故事板中的角色面部特征污染主角色卡（导致 Seedance 生成时角色五官融合变形），**故事板中绝对不允许画出任何角色的具体脸部与发型细节！**
+* **人偶占位符标准**：所有人类角色一律用灰色无脸三维木偶或剪影（`CHAR_PLACEHOLDER_GREY`）表示。画面仅体现其高矮身材比例、肢体动作姿态（Body Language）与物理阻挡、运动轨迹。
+
+### 5.2 故事板四象限技术网格排版 (4-Quadrant Technical Matrix)
+故事板的每一步镜头，均在 Obsidian Slate Gray 背景上，以高度严密的**四象限网格**布局展示：
+
+| 象限 | 英文名称 | 核心表现内容与运镜指示 |
+| :--- | :--- | :--- |
+| **第一象限** | **Top-View Motion Map** | 顶视运动平面图。用二维极坐标图展示本场景的墙壁、主要道具位置，用虚线画出角色与摄影机的移动轨迹。 |
+| **第二象限** | **Camera Setup Diagram** | 机位设置图。以三维示意图展示摄像机的物理高度（低角度俯拍、仰拍、平拍）、镜头俯仰倾角、焦平面位置。 |
+| **第三象限** | **Motivated Motion Vector** | 运镜路线图。通过纯英文的运动矢量剪头（如 `Dolly-in Vector`, `Whip-pan Axis`），可视化展示镜头的物理推进。 |
+| **第四象限** | **Chiaroscuro Atmosphere** | 光影氛围图。无任何复杂材质，仅以高反差的黑白灰块面（Chiaroscuro），指明本镜头的唯一核心动机光源位置及阴影投射区。 |
+
+### 5.3 15秒分镜技术引导表 (15-Second Segment Matrix)
+故事板下方，必须配有严格对应 15 秒内的分镜技术细节矩阵。分镜的格数与划分必须**完全由剧情呼吸感和叙事节奏决定**（杜绝死板的一成不变划分为 5 格，允许 1 个极长镜头或 3 个中等镜头）：
+
+* **镜号与时长锁 (Shot ID & Duration Lock)**：例如 `SEG_01 (0:00 - 0:07)`。
+* **构图占位 (Composition Placement)**：标明角色占位网格（如 `CHAR_PLACEHOLDER_GREY located on left 1/3 grid`）。
+* **景别与焦段 (Shot Size & Lens Lock)**：如 `Close-up, Cooke 75mm lens`。
+* **运镜矢量 (Camera Motion)**：如 `motivated slow dolly-in parallel to 180-degree axis`。
+* **台词与音效 (Dialogue & SFX)**：物理台词、画外音（VO）以及秒级 Foley 音效（如“`0:02` 关门碰撞声”、“`0:05` 风沙刮擦声”）。
+* **物理特效 (VFX)**：模型可稳定渲染的微小粒子路径（如“细微飘雪”、“逆光中缓慢飞扬的微尘”、“徐徐升腾的香烟蓝烟”）。
+
+---
+
+## 6. Seedance 2.0 终极提示词专家规范 (Seedance Prompt Expert Bible)
+
+Seedance 2.0 视频生成的成败完全取决于提示词的精密程度。**必须彻底抛弃简短的句子，全力以赴榨干 5000 字的字符上限**，写出融合全局设定、资产引用、秒级时间码微调及多维度负面约束的完美提示词包：
+
+### 6.1 全局艺术设定声明 (Global Cinematic Settings)
+在提示词的开头，首先用英文进行全剧的视觉基因硬锁定，包括摄像机型号、镜头系列、胶片质感、Chiaroscuro 动机光温与宽高比：
 ```text
-不要字幕，无字幕，no subtitles, no captions, clean frame, no on-screen text, no watermarks, no captions.
+[GLOBAL CINEMATIC ART DESIGN]
+Camera Package: ARRI Alexa 35, Cooke Panchro/i Classic Prime.
+Aspect Ratio: 2.39:1 Cinemascope wide frame.
+Visual Texture: Faded 1940s historical film grain, organic matte texture.
+Lighting Theme: High-contrast Chiaroscuro. Cold ambient twilight (5600k fill) contrasted with local warm lantern glow (3200k key), volumetric haze, Tyndall effect.
+```
+
+### 6.2 资产与故事板精准 `@圈图` 声明 (Precise Asset Referencing)
+在描述动作前，显式用 `@` 圈定底层资产图中的具体部分，强制模型调用正确的参考 Seed，杜绝人物和空间变异：
+```text
+[ASSET COORD REFERENCE DECLARATION]
+- Character Reference: Referencing face seed from @AssetCard_CHAR_LIXIA(Panel 2 - Facial Close-up) and wardrobe base from @AssetCard_CHAR_LIXIA(Panel 1 - Grey gown).
+- Scene Reference: Referencing spatial layout and architecture from @AssetCard_SCENE_YANAN_PAGODA(Panel 1 - Wide View) and environment assets from @AssetCard_SCENE_YANAN_PAGODA(Panel 7 - Cobblestone road).
+- Prop Reference: Referencing vintage suitcase from @AssetCard_PROP_LEATHER_SUITCASE(Panel 3 - Side profile).
+- Storyboard Reference: Ingesting movement vector and blocking coordinates from @StoryboardCard_SEG_01(Quadrant 1 & 3).
+```
+
+### 6.3 毫秒级时间轴动作与细节拆解 (Milisecond Timeline Breakdown)
+将 15 秒内的分镜切分为精细的秒级动作指示，将镜头移动、人物微表情、物理特效、声响 Foley 高度融合：
+```text
+[TIMELINE MOTION & PERFORMANCE BEAT]
+- 0:00 - 0:03: Camera begins in a tight close-up on CHAR_LIXIA's eyes. Cooke 75mm lens, shallow depth of field. CHAR_LIXIA stands still on the loess dirt road of SCENE_YANAN_PAGODA, looking toward the distant Pagoda Mountain. Fine yellow sand dust particles slowly drift from left to right across his face in the wind. Subtle jaw muscles clenching, eyes unwavering.
+- 0:03 - 0:07: Motivated slow dolly-out camera movement, expanding to a medium shot. The Chief CHAR_SHOUZHANG enters the frame from the right side, strictly respecting the 180-degree axis line. His hand, covered in a faded cotton sleeve, slowly reaches out and pats CHAR_LIXIA's shoulder gently, twice. CHAR_LIXIA’s lips part slightly as he takes a deep, calm breath (VOICE_LOCK: slow gravelly breathing), showing emotional restraint.
+- 0:07 - 0:11: Cut to an over-the-shoulder shot from behind CHAR_SHOUZHANG's shoulder, looking at CHAR_LIXIA. Li Xia CHAR_LIXIA grips the vintage leather suitcase PROP_LEATHER_SUITCASE tightly with his right hand (no hand distortion, five distinct fingers clearly visible). He bows deeply at 45 degrees towards the Chief and the exactly three comrades standing in a perfect row in the background.
+- 0:11 - 0:15: Dolly-in slowly behind CHAR_LIXIA as he straightens up, turns his back resolutely, and walks away along the center of the dusty road. In the background, the Chief and the three comrades simultaneously raise their right hands to execute a synchronized, crisp military salute. Golden sunset glow forms a warm rim light around their silhouettes, creating a powerful, epic historical farewell atmosphere.
+```
+
+### 6.4 多维度严苛负面提示词约束 (Multidimensional Negative Constraints)
+在提示词结尾，根据剧本特征和模型易犯的毛病，定制全方位的负面过滤，绝对杜绝画面崩坏：
+```text
+[MULTIDIMENSIONAL NEGATIVE PROMPT GUARDS]
+Negative Prompt: Deformed hands, overlapping fingers, mutated limbs, distorted facial features, face melting, extra fingers, merging bodies, mismatched eyes. Text, burned-in subtitles, captions, on-screen watermarks, logos, dates, timestamps. Kraft paper texture, oil paper background, colorful glowing halos, random lens flares, neon flashes, game engine style, highly saturated cartoon illustration. Camera axis crossing, sudden cuts within the timeline segment, spatial warping, morphing architectures, cloning background characters, identical cloned faces.
 ```
 
 ---
 
-## 6. Pipeline Handoff & Generation Scorecard (管线交接与评分机制)
+## 7. 验收与评分卡 (Downstream Verification Scorecard)
 
-Every completed project prompt file must include a **Downstream Acceptance Scorecard** for the operator to evaluate the rendered takes:
+操作员在拿到渲染输出后，根据此卡进行严苛评分，未达到 90 分以上的 take 必须无条件重跑：
 
-| Metric | Target | Evaluation Rule |
-|---|---|---|
-| **Identity Drift** | <5% | Do character features, wardrobe, or scene landmarks vary across segments? |
-| **Linter Warnings** | 0 Critical | Does the final prompt contain timecodes ending after 0:15 or go over 5000 chars? |
-| **Visual Pacing** | Cinematic | Do camera speeds match the dramatic tension of the screenplay? |
-| **Clean Frame** | Pass | Is the footage free of random text, watermarks, or burned-in subtitles? |
+| 评估指标 | 工业级权重 | 完美合格标准（0-100分评判） |
+| :--- | :--- | :--- |
+| **基底与色彩漂移** | 20% | 资产与分镜背景是否全为 **Obsidian Slate Gray**？视频与前一镜色相误差是否小于 5%？ |
+| **面部一致性** | 25% | 主角李侠在各镜头的五官特征、眼镜框、发型是否漂移？是否有“瞬变脸”现象？ |
+| **手部与道具逻辑** | 20% | 提行李箱、拍肩膀等手部与道具接触面是否有指关节畸变（无 overlapping fingers）？ |
+| **镜头运动与轴线规避** | 15% | 镜头是否匀速有动机平移？是否严格遵守 180° 轴线，没有出现方向错乱的越轴？ |
+| **画幅干净度 (Clean Frame)** | 20% | 视频全长是否 100% 无任何杂乱英文字母、汉字水印或 AI 自动烧录的字幕？ |
 
-This Holy Bible is the absolute operational law of AIGC Film Production Master. All agent reasoning and text generation must align with these parameters.
+---
+本圣经为最高开发标准，任何智能体在处理微短剧生成时，必须绝对贯彻上述物理背景与双轨提示词编译算法。

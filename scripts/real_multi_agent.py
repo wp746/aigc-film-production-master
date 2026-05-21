@@ -278,32 +278,57 @@ A wrong detail: The grandfather clock in the study has three hands, all moving c
                 "scene_id,location_name,geography_source,fixed_anchors,time_weather,camera_safe_zones,version,status\n"
                 "SCENE_STUDY,书房,00_sources/study_look.jpg,grandfather clock and desk,dark ambient light,behind desk,v001,LOCKED\n"
             )
-            prompts_md = f"""# {title} - Image2 + Seedance Production Prompts
+            prompts_cn = f"""# {title} - Image2 + Seedance 生产提示词 (中文参考版)
+# 画板基底锁定：黑曜石深灰色磨砂质感背景配极细网格线 (Matte Obsidian Slate Gray with minimalist fine grid lines)
+
+## 资产设计提示词 (Asset Design Prompts)
+- **CHAR_HERO** (林探长): 穿着灰色毛呢风衣的林探长，疲惫而深邃的眼神，写实电影肖像。
+- **SCENE_STUDY** (书房): 昏暗的书房，背景中立着一座老旧的祖父钟，木质书桌。
+
+## 故事板与分镜视频提示词 (Storyboard & Seedance Prompts)
+### 分镜 1 视频提示词
+```text
+0:00 - 0:07: [S01] 慢推镜头，林探长坐书房桌前，看着手中的照片。
+画面保持绝对稳定，不要字幕，无字幕，影像风格锁：STYLE_BIBLE, STYLE_LOCK.
+```
+
+### 分镜 2 视频提示词
+```text
+0:00 - 0:08: [S02] 特写，老旧的祖父钟，三个指针以反方向逆时针旋转。
+确保机械细节稳定，不要字幕，无字幕，影像风格锁：STYLE_BIBLE, STYLE_LOCK.
+```
+"""
+            prompts_en = f"""# {title} - Image2 + Seedance Production Prompts (English Executable)
+# Storyboard Substrate Solid Lock: Matte Obsidian Slate Gray with minimalist fine grid lines
 
 ## Asset Design Prompts
-- **CHAR_HERO** (CN): 穿着灰色毛呢风衣的林探长，疲惫而深邃的眼神，写实电影肖像。
-- **CHAR_HERO** (EN): A cinematic portrait of Detective Lin in a grey wool trenchcoat, tired yet sharp eyes, cinematic lighting, hyper-realistic.
-- **SCENE_STUDY** (CN): 昏暗的书房，背景中立着一座老旧的祖父钟，木质书桌。
-- **SCENE_STUDY** (EN): A dimly lit study room, an old grandfather clock standing in the background, dark oak desk, realistic atmosphere.
+- **CHAR_HERO**: A cinematic portrait of Detective Lin in a grey wool trenchcoat, tired yet sharp eyes, cinematic lighting, hyper-realistic, Matte Obsidian Slate Gray background.
+- **SCENE_STUDY**: A dimly lit study room, an old grandfather clock standing in the background, dark oak desk, realistic atmosphere, Matte Obsidian Slate Gray background.
 
 ## Storyboard Prompts + Seedance Prompts
+
+### Storyboard Panel 1 (S01 - Push-in)
+* **Substrate Lock**: Matte Obsidian Slate Gray background with minimalist fine grid lines.
 
 ### Segment 1 Seedance Prompt
 ```text
 0:00 - 0:07: [S01] A slow push-in shot of Detective Lin CHAR_HERO sitting at a desk in SCENE_STUDY.
-他微微眯起双眼，看着手中的照片。
-禁止任何动作漂移，画面保持绝对稳定。
-不要字幕，无字幕，no subtitles, no captions, clean frame.
-影像风格锁：STYLE_BIBLE, STYLE_LOCK.
+He narrows his eyes slightly, looking at the photo in his hand.
+No motion drift, maintain absolute image stability.
+No subtitles, no captions, clean frame.
+Cinematography style lock: STYLE_BIBLE, STYLE_LOCK.
 ```
+
+### Storyboard Panel 2 (S02 - Close-up)
+* **Substrate Lock**: Matte Obsidian Slate Gray background with minimalist fine grid lines.
 
 ### Segment 2 Seedance Prompt
 ```text
 0:00 - 0:08: [S02] Extreme close-up of a grandfather clock in SCENE_STUDY.
-三个指针以诡异的反方向逆时针旋转。
-禁止手部扭曲，确保机械细节稳定。
-不要字幕，无字幕，no subtitles, no captions, clean frame.
-影像风格锁：STYLE_BIBLE, STYLE_LOCK.
+Three hands spinning counter-clockwise in a bizarre fashion.
+No hand distortion, ensure mechanical details are stable.
+No subtitles, no captions, clean frame.
+Cinematography style lock: STYLE_BIBLE, STYLE_LOCK.
 ```
 """
         else:
@@ -312,22 +337,38 @@ A wrong detail: The grandfather clock in the study has three hands, all moving c
             director_md = f"# Director Plan: {title}\n- **SEG_01 (0:00-0:05)**: [DIRECT_GENERATABLE] CHAR_HERO appears in SCENE_MAIN.\n"
             char_csv = "char_id,name,identity_source,face_anchors,wardrobe_base,voice_rhythm,gesture_habit,version,status\nCHAR_HERO,主角,00_sources/face.jpg,clean face,jacket,calm,none,v001,LOCKED\n"
             scene_csv = "scene_id,location_name,geography_source,fixed_anchors,time_weather,camera_safe_zones,version,status\nSCENE_MAIN,场景,00_sources/look.jpg,wall anchor,daylight,center,v001,LOCKED\n"
-            prompts_md = f"""# {title} - Image2 + Seedance Production Prompts
+            prompts_cn = f"""# {title} - Image2 + Seedance 生产提示词 (中文参考版)
+# 画板基底锁定：黑曜石深灰色磨砂质感背景配极细网格线 (Matte Obsidian Slate Gray with minimalist fine grid lines)
+
+## 资产设计提示词
+- **CHAR_HERO** (主角): 主角写实肖像。
+- **SCENE_MAIN** (场景): 主体写实场景。
+
+## 故事板与分镜视频提示词
+### 分镜 1 视频提示词
+```text
+0:00 - 0:05: [S01] 主角站立在场景中，向前凝视。
+不要字幕，无字幕，影像风格锁：STYLE_BIBLE, STYLE_LOCK.
+```
+"""
+            prompts_en = f"""# {title} - Image2 + Seedance Production Prompts (English Executable)
+# Storyboard Substrate Solid Lock: Matte Obsidian Slate Gray with minimalist fine grid lines
 
 ## Asset Design Prompts
-- **CHAR_HERO** (CN): 主角写实肖像。
-- **CHAR_HERO** (EN): Cinematic portrait of CHAR_HERO.
-- **SCENE_MAIN** (CN): 主体写实场景。
-- **SCENE_MAIN** (EN): Realistic scene of SCENE_MAIN.
+- **CHAR_HERO**: Cinematic portrait of CHAR_HERO, Matte Obsidian Slate Gray background.
+- **SCENE_MAIN**: Realistic scene of SCENE_MAIN, Matte Obsidian Slate Gray background.
 
 ## Storyboard Prompts + Seedance Prompts
+
+### Storyboard Panel 1 (S01 - Establishing)
+* **Substrate Lock**: Matte Obsidian Slate Gray background with minimalist fine grid lines.
 
 ### Segment 1 Seedance Prompt
 ```text
 0:00 - 0:05: [S01] CHAR_HERO stands in SCENE_MAIN looking forward.
-禁止画面乱码。
-不要字幕，无字幕，no subtitles, no captions, clean frame.
-影像风格锁：STYLE_BIBLE, STYLE_LOCK.
+No motion drift, maintain absolute image stability.
+No subtitles, no captions, clean frame.
+Cinematography style lock: STYLE_BIBLE, STYLE_LOCK.
 ```
 """
 
@@ -347,15 +388,18 @@ A wrong detail: The grandfather clock in the study has three hands, all moving c
 
         # 04 Prompt Factory
         print_agent_log("04 Prompt Factory", C_BLUE, "Crafting bilingual prompts...")
-        prompt_path = project_dir / "05_seedance_prompts" / f"{slug}_prompts_v001.md"
-        prompt_path.write_text(prompts_md, encoding="utf-8")
-        print_agent_log("04 Prompt Factory", C_BLUE, f"Saved raw prompts draft to: {prompt_path.name}")
+        prompt_cn_path = project_dir / "05_seedance_prompts" / f"{slug}_prompts_CN_reference.md"
+        prompt_en_path = project_dir / "05_seedance_prompts" / f"{slug}_prompts_EN_executable.md"
+        prompt_cn_path.write_text(prompts_cn, encoding="utf-8")
+        prompt_en_path.write_text(prompts_en, encoding="utf-8")
+        print_agent_log("04 Prompt Factory", C_BLUE, f"Saved CN reference prompts to: {prompt_cn_path.name}")
+        print_agent_log("04 Prompt Factory", C_BLUE, f"Saved EN executable prompts to: {prompt_en_path.name}")
 
         # 05 QA Risk Gatekeeper
-        print_agent_log("05 QA Risk Gatekeeper", C_RED, "Enforcing quality gates. Running prompt linter...")
+        print_agent_log("05 QA Risk Gatekeeper", C_RED, "Enforcing quality gates. Running prompt linter on EN executable...")
         sys.path.insert(0, str(Path(__file__).resolve().parent))
         from prompt_lint import lint_file
-        lint_results = lint_file(prompt_path)
+        lint_results = lint_file(prompt_en_path)
         errors = [r for r in lint_results if any(x in r for x in ["exceeds", "missing", "ends after", "no fenced", "subtitles"])]
         warnings = [r for r in lint_results if r not in errors]
         
@@ -374,11 +418,14 @@ A wrong detail: The grandfather clock in the study has three hands, all moving c
         # Write to outputs/
         out_dir = Path("outputs")
         out_dir.mkdir(exist_ok=True)
-        final_out = out_dir / f"{slug}-image2-seedance-prompts-v001.md"
-        final_out.write_text(prompts_md, encoding="utf-8")
+        final_cn_out = out_dir / f"{slug}_prompts_CN_reference.md"
+        final_en_out = out_dir / f"{slug}_prompts_EN_executable.md"
+        final_cn_out.write_text(prompts_cn, encoding="utf-8")
+        final_en_out.write_text(prompts_en, encoding="utf-8")
         print(f"\n{C_GREEN}{C_BOLD}✔ DRY RUN PIPELINE COMPLETED SUCCESSFULLY!{C_RESET}")
         print(f"All assets logged, linter passed cleanly.")
-        print(f"Final operator prompts compiled to: {C_BOLD}{final_out}{C_RESET}\n")
+        print(f"Final CN reference prompts compiled to: {C_BOLD}{final_cn_out}{C_RESET}")
+        print(f"Final EN executable prompts compiled to: {C_BOLD}{final_en_out}{C_RESET}\n")
         return 0
 
     # -------------------------------------------------------------
@@ -582,22 +629,64 @@ A wrong detail: The grandfather clock in the study has three hands, all moving c
             f"Here is the Director Plan:\n\n{director_plan}\n\n"
             f"Here are the asset details:\nCharacters:\n{char_csv}\n\nScenes:\n{scene_csv}\n\n"
             f"Tasks:\n"
-            f"1. Generate copy-ready bilingual (CN/EN) Image2 prompts for characters and scene assets.\n"
-            f"2. Assemble sequential Seedance 2.0 prompts inside fenced text code blocks.\n"
-            f"3. Enforce ALL downstream rules: local 0:00 start timecode, 15-second limits, no-subtitle clean frame locks, "
-            f"and motion/face drift prevention tokens. Do not let text go over the 5000 character limit."
+            f"1. Compile the CHINESE REFERENCE version of the prompt package (`*_prompts_CN_reference.md`) containing Chinese visual intent descriptions, and storyboards/assets designed with Chinese label titles for human review.\n"
+            f"2. Compile the ENGLISH EXECUTABLE version of the prompt package (`*_prompts_EN_executable.md`) containing pure English annotations, coordinates, layout markers, and sequential Seedance 2.0 prompts inside fenced text code blocks, completely avoiding Chinese character rendering to prevent model text corruption.\n"
+            f"3. Enforce all visual bibles: Matte Obsidian Slate Gray canvas background for all assets and storyboard quadrants, silhouette placeholders (`CHAR_PLACEHOLDER_GREY`) for storyboards, specific coordinates referencing, local 0:00 start timecode, 15-second limits, no-subtitle clean frame locks, no-cloned crowd limits, and style locks (STYLE_BIBLE/STYLE_LOCK).\n\n"
+            f"CRITICAL FORMATTING INSTRUCTION: You MUST output both versions in a single response, separated by exact delimiters.\n"
+            f"Begin the Chinese version with: === CHINESE REFERENCE VERSION ===\n"
+            f"Begin the English version with: === ENGLISH EXECUTABLE VERSION ===\n"
+            f"Ensure each version is fully detailed, well-structured, and compliant with all visual bibles."
         )
         
         prompt_draft = call_llm(
             api_key, base_url, args.model, factory_sys, factory_user
         )
         
-        prompt_path = project_dir / "05_seedance_prompts" / f"{slug}_prompts_v001.md"
-        prompt_path.write_text(prompt_draft, encoding="utf-8")
+        # Split the prompt package by delimiters
+        prompt_cn = ""
+        prompt_en = ""
+        if "=== CHINESE REFERENCE VERSION ===" in prompt_draft or "=== ENGLISH EXECUTABLE VERSION ===" in prompt_draft:
+            parts = re.split(
+                r"===\s*(?:CHINESE REFERENCE VERSION|ENGLISH EXECUTABLE VERSION)\s*===",
+                prompt_draft,
+                flags=re.IGNORECASE
+            )
+            cn_idx = prompt_draft.lower().find("chinese reference version")
+            en_idx = prompt_draft.lower().find("english executable version")
+            
+            if len(parts) >= 3:
+                if cn_idx < en_idx:
+                    prompt_cn = parts[1].strip()
+                    prompt_en = parts[2].strip()
+                else:
+                    prompt_en = parts[1].strip()
+                    prompt_cn = parts[2].strip()
+            elif len(parts) == 2:
+                if cn_idx != -1 and en_idx == -1:
+                    prompt_cn = parts[1].strip()
+                elif en_idx != -1 and cn_idx == -1:
+                    prompt_en = parts[1].strip()
+        
+        if not prompt_cn:
+            prompt_cn = prompt_draft
+        if not prompt_en:
+            prompt_en = prompt_draft
+
+        prompt_cn_path = project_dir / "05_seedance_prompts" / f"{slug}_prompts_CN_reference.md"
+        prompt_en_path = project_dir / "05_seedance_prompts" / f"{slug}_prompts_EN_executable.md"
+        
+        prompt_cn_path.write_text(prompt_cn, encoding="utf-8")
+        prompt_en_path.write_text(prompt_en, encoding="utf-8")
+        
         print_agent_log(
             "04 Prompt Factory",
             C_BLUE,
-            f"Assembled prompt package saved to: 05_seedance_prompts/{prompt_path.name}. Handing off to QA Gatekeeper...",
+            f"Saved CN reference prompts to: 05_seedance_prompts/{prompt_cn_path.name}",
+        )
+        print_agent_log(
+            "04 Prompt Factory",
+            C_BLUE,
+            f"Saved EN executable prompts to: 05_seedance_prompts/{prompt_en_path.name}",
         )
 
         # -------------------------------------------------------------
@@ -606,14 +695,14 @@ A wrong detail: The grandfather clock in the study has three hands, all moving c
         print_agent_log(
             "05 QA Risk Gatekeeper",
             C_RED,
-            "Ingesting prompts. Conducting compliance verification and static linter checks...",
+            "Ingesting prompts. Conducting compliance verification and static linter checks on EN executable...",
         )
         
-        # Run programmatic linter
+        # Run programmatic linter on EN executable
         sys.path.insert(0, str(Path(__file__).resolve().parent))
         from prompt_lint import lint_file
         
-        lint_results = lint_file(prompt_path)
+        lint_results = lint_file(prompt_en_path)
         errors = [r for r in lint_results if any(x in r for x in ["exceeds", "missing", "ends after", "no fenced", "subtitles"])]
         warnings = [r for r in lint_results if r not in errors]
         
@@ -625,8 +714,9 @@ A wrong detail: The grandfather clock in the study has three hands, all moving c
             f"{(ref_dir / 'compliance-rights-ip-gate.md').read_text(encoding='utf-8')}"
         )
         gatekeeper_user = (
-            f"Here is the generated prompt package draft:\n\n{prompt_draft}\n\n"
-            f"Here are the programmatic prompt linter results:\n"
+            f"Here is the generated CHINESE REFERENCE prompt package:\n\n{prompt_cn}\n\n"
+            f"Here is the generated ENGLISH EXECUTABLE prompt package:\n\n{prompt_en}\n\n"
+            f"Here are the programmatic prompt linter results on the EN executable version:\n"
             f"Critical Errors: {errors}\n"
             f"Warnings: {warnings}\n\n"
             f"Tasks:\n"
@@ -646,8 +736,10 @@ A wrong detail: The grandfather clock in the study has three hands, all moving c
         # Deliver copy to outputs
         outputs_dir = Path("outputs")
         outputs_dir.mkdir(exist_ok=True)
-        final_out_file = outputs_dir / f"{slug}-image2-seedance-prompts-v001.md"
-        final_out_file.write_text(prompt_draft, encoding="utf-8")
+        final_cn_file = outputs_dir / f"{slug}_prompts_CN_reference.md"
+        final_en_file = outputs_dir / f"{slug}_prompts_EN_executable.md"
+        final_cn_file.write_text(prompt_cn, encoding="utf-8")
+        final_en_file.write_text(prompt_en, encoding="utf-8")
         
         if errors:
             print_agent_log(
@@ -666,7 +758,8 @@ A wrong detail: The grandfather clock in the study has three hands, all moving c
         )
         print(f"\n{C_GREEN}{C_BOLD}✔ MULTI-AGENT PIPELINE EXECUTION SUCCESSFUL!{C_RESET}")
         print(f"Outputs written to project skeleton at: {C_BOLD}{project_dir}{C_RESET}")
-        print(f"Final operator-ready prompts compiled to: {C_BOLD}{final_out_file}{C_RESET}")
+        print(f"Final CN reference prompts compiled to: {C_BOLD}{final_cn_file}{C_RESET}")
+        print(f"Final EN executable prompts compiled to: {C_BOLD}{final_en_file}{C_RESET}")
         print("\n==================================================\n")
         return 0
 
