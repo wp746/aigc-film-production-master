@@ -12,14 +12,12 @@ AIGC 图像模型默认会产生随机的画布背景（如牛皮纸、报纸、
 * **硬性标准**：所有资产图（角色、场景、道具）及技术故事板的背景一律硬编码锁定为 **“黑曜石深灰色磨砂质感背景配极细网格线”**（Matte Obsidian Slate Gray with minimalist fine grid lines）。
 * **技术价值**：彻底消除牛皮纸、羊皮纸等随机纸张噪声，保证所有分镜和资产图的色彩饱和度与背景灰阶绝对一致，便于视频模型（Seedance 2.0）读取。
 
-### 1.2 中英文双路提示词与图片输出 (Bilingual Dual-Track Outputs)
-为兼顾“人类直观理解”与“AI模型零误差无损运行”，系统在输出任何提示词包时，必须自动分裂为独立双轨：
-1. **中文参考版提示词 (`*_prompts_CN_reference.md`)**：
-   * **功能**：用于中文制片人、导演和操作员直观审查、调整剧本与视觉意图。
-   * **标签渲染**：指示 Image2 生成带有中文标注和标签的图片，方便人眼核对。
-2. **英文无损运行版提示词 (`*_prompts_EN_executable.md`)**：
-   * **功能**：用于直接输入 AI 模型进行无损生图与视频跑图。
-   * **标签渲染**：图片内所有排版、坐标、面板索引一律采用**纯英文**（如 `Panel A`, `Side View`, `Grid 1`）。由于模型天然对英文拼写有完美的拓扑保持力，英文版本能 100% 杜绝文字扭曲、乱码或崩坏，确保下游完美读取。
+### 1.2 图面字符绝对英文纯净化与双语对照 (Pure English Image Font Lock & Bilingual Mapping)
+* **图面防崩溃硬红线**：无论是“中文参考轨”还是“英文运行轨”，生成的生图提示词（Image2）中**绝对禁止**指示模型在图片画布上渲染任何中文字体或复杂的英文长句。
+* **英文标识统一锁定**：图面上所有面板、零件、视角一律只允许使用极其简单的英文符号/标签（如 `Panel A`, `B`, `C`, `FRONT`, `SIDE`, `BACK`, `GRID A1`, `Label_A`, `Label_B`），且字体声明为干净简约的 Sans-serif。必须添加负面关键字（`no Chinese text, no garbled letters, no distorted text labels, clean typography`）消音。
+* **双轨字符策略**：
+  1. **中文参考版提示词 (`*_prompts_CN_reference.md`)**：生成图片时同样使用英文标识，但必须在 Markdown 文本中提供 **“中英双语图面标识映射表” (Bilingual Structural Mapping Table)**，供导演/人类操作员完美对照和理解（如 `Panel A = 全身前视图`、`Label_A = 锁扣爆炸分解`）。
+  2. **英文无损运行版提示词 (`*_prompts_EN_executable.md`)**：保持纯英文的极简排版与无损英文标签，直接用于模型跑图。
 
 ---
 
@@ -112,24 +110,28 @@ AIGC 图像模型默认会产生随机的画布背景（如牛皮纸、报纸、
 
 Seedance 2.0 视频生成的成败完全取决于提示词的精密程度。**必须彻底抛弃简短的句子，全力以赴榨干 5000 字的字符上限**，写出融合全局设定、资产引用、秒级时间码微调及多维度负面约束的完美提示词包：
 
-### 6.1 全局艺术设定声明 (Global Cinematic Settings)
-在提示词的开头，首先用英文进行全剧的视觉基因硬锁定，包括摄像机型号、镜头系列、胶片质感、Chiaroscuro 动机光温与宽高比：
-```text
-[GLOBAL CINEMATIC ART DESIGN]
-Camera Package: ARRI Alexa 35, Cooke Panchro/i Classic Prime.
-Aspect Ratio: 2.39:1 Cinemascope wide frame.
-Visual Texture: Faded 1940s historical film grain, organic matte texture.
-Lighting Theme: High-contrast Chiaroscuro. Cold ambient twilight (5600k fill) contrasted with local warm lantern glow (3200k key), volumetric haze, Tyndall effect.
-```
+### 6.1 图像-视频双向解耦与安全切分圣经 (Image-to-Video Visual Reference Decoupling)
+* **防噪防崩绝对红线**：**严禁直接将包含四视图、九宫格、坐标标签、黑底细网格等多面板的资产卡整体图喂入 Seedance 2.0 作为 I2V（图生视频）的参考图！** 否则，视频模型会误读拼贴排版，把多画面分割和灰色背景网格渲染进视频，导致画面极度混乱。
+* **单幅参考图切割机制**：若需使用资产图作为 Seedance 2.0 的视觉参考，操作员必须采用以下两种机制之一：
+  1. **单图裁剪 (Crop Reference)**：将多视图资产卡中的特定面板（如 `Panel B` 脸部特写或 `Panel A` 全身前视图）单独裁剪成单张 16:9 的干净无网格图像，作为 face seed / costume seed 的输入。
+  2. **分镜关键帧生成 (Keyframe Reference)**：直接使用“故事板分镜提示词”生成单张 16:9 干净无网格的实拍级画面（不包含四象限网格和无脸占位符），以其作为 Seedance 的 I2V 首帧/参考帧。
 
-### 6.2 资产与故事板精准 `@圈图` 声明 (Precise Asset Referencing)
-在描述动作前，显式用 `@` 圈定底层资产图中的具体部分，强制模型调用正确的参考 Seed，杜绝人物和空间变异：
+### 6.2 全局视觉风格词段动态注入圣经 (Global Visual Style Block & Dynamic Prompt Injection)
+单纯依赖图像参考不足以完全锁死视觉调性。为了实现 100% 电影级色彩与质感的一致性，系统必须定义一个高度浓缩的 **“全局视觉风格词段” (Global Visual Style Block)**，并在编译时**动态地注入到每一段 Seedance 2.0 分镜提示词的头部与尾部**。
+* **全局视觉风格词段构成**：
+  * 包含摄像机型号、镜头焦段、胶片型号、Chiaroscuro 动机光温与光比、环境氛围粒子等风格代码。
+  * 示例：`[GLOBAL STYLE: 1930s cinematic spy-thriller look, Cooke Panchro prime lens, high-contrast chiaroscuro, desaturated military green and warm amber color grading, faded 1940s film grain, volumetric fog, organic micro dust particles, no game CG look, photo-realistic]`
+* **动态注入机制**：
+  * 智能体和提示词编译工厂在输出每一段 Segment 时，必须将该全局视觉风格词段无条件拼接到 Segment Prompts 的最前与最后，建立全方位的文法围栏，强力约束 Seedance 2.0 的生成空间，保证镜头之间不发生色彩与光影的漂移。
+
+### 6.3 资产与故事板精准 `@圈图` 声明 (Precise Asset Referencing)
+In describing movements, explicitly reference structural zones of the asset maps to prevent visual drift:
 ```text
 [ASSET COORD REFERENCE DECLARATION]
-- Character Reference: Referencing face seed from @AssetCard_CHAR_LIXIA(Panel 2 - Facial Close-up) and wardrobe base from @AssetCard_CHAR_LIXIA(Panel 1 - Grey gown).
-- Scene Reference: Referencing spatial layout and architecture from @AssetCard_SCENE_YANAN_PAGODA(Panel 1 - Wide View) and environment assets from @AssetCard_SCENE_YANAN_PAGODA(Panel 7 - Cobblestone road).
-- Prop Reference: Referencing vintage suitcase from @AssetCard_PROP_LEATHER_SUITCASE(Panel 3 - Side profile).
-- Storyboard Reference: Ingesting movement vector and blocking coordinates from @StoryboardCard_SEG_01(Quadrant 1 & 3).
+- Character Reference: Referencing face seed from @AssetCard_CHAR_LIXIA(Panel B - Facial Close-up) and wardrobe base from @AssetCard_CHAR_LIXIA(Panel A - Grey gown).
+- Scene Reference: Referencing spatial layout and architecture from @AssetCard_SCENE_YANAN_PAGODA(Sector A1 - Wide View) and environment assets from @AssetCard_SCENE_YANAN_PAGODA(Sector C1 - Pagoda bricks).
+- Prop Reference: Referencing vintage suitcase from @AssetCard_PROP_LEATHER_SUITCASE(Panel A - Orthographic profile).
+- Storyboard Reference: Ingesting movement vector and blocking coordinates from @StoryboardCard_SEG_01(Quadrant I & III).
 ```
 
 ### 6.3 毫秒级时间轴动作与细节拆解 (Milisecond Timeline Breakdown)

@@ -281,29 +281,53 @@ A wrong detail: The grandfather clock in the study has three hands, all moving c
             prompts_cn = f"""# {title} - Image2 + Seedance 生产提示词 (中文参考版)
 # 画板基底锁定：黑曜石深灰色磨砂质感背景配极细网格线 (Matte Obsidian Slate Gray with minimalist fine grid lines)
 
+> [!WARNING]
+> **操作员切割提醒 (Director Action Notice)**
+> 严禁直接将包含多视图、九宫格、坐标标签、黑底细网格的多面板资产卡整体图喂入 Seedance 2.0 作为 I2V 的参考图。操作员必须：
+> 1. 进行单图裁剪 (Crop Reference)，裁剪出特定 Panel 进行参考；或
+> 2. 直接使用干净的 16:9 无网格故事板分镜作为 I2V 首帧。
+
 ## 资产设计提示词 (Asset Design Prompts)
-- **CHAR_HERO** (林探长): 穿着灰色毛呢风衣的林探长，疲惫而深邃的眼神，写实电影肖像。
-- **SCENE_STUDY** (书房): 昏暗的书房，背景中立着一座老旧的祖父钟，木质书桌。
+- **CHAR_HERO** (林探长):
+  - 图像提示词：A cinematic portrait of Detective Lin in a grey wool trenchcoat, tired yet sharp eyes, cinematic lighting, hyper-realistic, Matte Obsidian Slate Gray background. Enforce pure English labeling layout only ('Panel A' for front, 'Panel B' for face), no Chinese characters, no garbled letters, no distorted text labels, clean typography.
+- **SCENE_STUDY** (书房):
+  - 图像提示词：A dimly lit study room, an old grandfather clock standing in the background, dark oak desk, realistic atmosphere, Matte Obsidian Slate Gray background. Enforce silent grid labels only ('Sector A1', 'Sector B2'), no Chinese text, no garbled letters, clean typography.
+
+### 资产图面标识双语映射表 (Bilingual Structural Mapping Table)
+| 图面标识 (English Label) | 中文释义 (Chinese Translation) | 画面控制要求 (Canvas Control) |
+| :--- | :--- | :--- |
+| `Panel A` | 全身四视图 (4-View Full Body Grid) | 纯英文无网格/正面/侧面/背面 |
+| `Panel B` | 人脸中性特写 (Facial Close-up) | 极其干净的正面肖像，无任何中文字体 |
+| `Sector A1` | 室内布局全景 (Wide View) | 宽视角空间场景 |
+| `Sector B2` | 祖父钟定位区 (Grandfather Clock Sector) | 场景核心物理锚点 |
 
 ## 故事板与分镜视频提示词 (Storyboard & Seedance Prompts)
-### 分镜 1 视频提示词
+### 分镜 1 Seedance 提示词
 ```text
-0:00 - 0:07: [S01] 慢推镜头，林探长坐书房桌前，看着手中的照片。
+0:00 - 0:07: [S01] [GLOBAL STYLE: 1930s cinematic spy-thriller look, Cooke Panchro prime lens, high-contrast chiaroscuro, desaturated military green and warm amber color grading, faded 1940s film grain, volumetric fog, organic micro dust particles, no game CG look, photo-realistic] 慢推镜头，林探长坐书房桌前，看着手中的照片。
 画面保持绝对稳定，不要字幕，无字幕，影像风格锁：STYLE_BIBLE, STYLE_LOCK.
+[GLOBAL STYLE: 1930s cinematic spy-thriller look, Cooke Panchro prime lens, high-contrast chiaroscuro, desaturated military green and warm amber color grading, faded 1940s film grain, volumetric fog, organic micro dust particles, no game CG look, photo-realistic]
 ```
 
-### 分镜 2 视频提示词
+### 分镜 2 Seedance 提示词
 ```text
-0:00 - 0:08: [S02] 特写，老旧的祖父钟，三个指针以反方向逆时针旋转。
+0:00 - 0:08: [S02] [GLOBAL STYLE: 1930s cinematic spy-thriller look, Cooke Panchro prime lens, high-contrast chiaroscuro, desaturated military green and warm amber color grading, faded 1940s film grain, volumetric fog, organic micro dust particles, no game CG look, photo-realistic] 特写，老旧的祖父钟，三个指针以反方向逆时针旋转。
 确保机械细节稳定，不要字幕，无字幕，影像风格锁：STYLE_BIBLE, STYLE_LOCK.
+[GLOBAL STYLE: 1930s cinematic spy-thriller look, Cooke Panchro prime lens, high-contrast chiaroscuro, desaturated military green and warm amber color grading, faded 1940s film grain, volumetric fog, organic micro dust particles, no game CG look, photo-realistic]
 ```
 """
             prompts_en = f"""# {title} - Image2 + Seedance Production Prompts (English Executable)
 # Storyboard Substrate Solid Lock: Matte Obsidian Slate Gray with minimalist fine grid lines
 
+> [!WARNING]
+> **Director Action Notice**
+> DO NOT feed raw multi-view cards or 9-angle grids into Seedance 2.0. Operators must:
+> 1. Use single panel cropping (Crop Reference) to feed a specific panel; or
+> 2. Use clean, 16:9 gridless storyboard frames as the Seedance I2V reference.
+
 ## Asset Design Prompts
-- **CHAR_HERO**: A cinematic portrait of Detective Lin in a grey wool trenchcoat, tired yet sharp eyes, cinematic lighting, hyper-realistic, Matte Obsidian Slate Gray background.
-- **SCENE_STUDY**: A dimly lit study room, an old grandfather clock standing in the background, dark oak desk, realistic atmosphere, Matte Obsidian Slate Gray background.
+- **CHAR_HERO**: A cinematic portrait of Detective Lin in a grey wool trenchcoat, tired yet sharp eyes, cinematic lighting, hyper-realistic, Matte Obsidian Slate Gray background. Enforce pure English labeling layout only ('Panel A' for front, 'Panel B' for face), no Chinese characters, no garbled letters, no distorted text labels, clean typography.
+- **SCENE_STUDY**: A dimly lit study room, an old grandfather clock standing in the background, dark oak desk, realistic atmosphere, Matte Obsidian Slate Gray background. Enforce silent grid labels only ('Sector A1', 'Sector B2'), no Chinese text, no garbled letters, clean typography.
 
 ## Storyboard Prompts + Seedance Prompts
 
@@ -312,11 +336,12 @@ A wrong detail: The grandfather clock in the study has three hands, all moving c
 
 ### Segment 1 Seedance Prompt
 ```text
-0:00 - 0:07: [S01] A slow push-in shot of Detective Lin CHAR_HERO sitting at a desk in SCENE_STUDY.
+0:00 - 0:07: [S01] [GLOBAL STYLE: 1930s cinematic spy-thriller look, Cooke Panchro prime lens, high-contrast chiaroscuro, desaturated military green and warm amber color grading, faded 1940s film grain, volumetric fog, organic micro dust particles, no game CG look, photo-realistic] A slow push-in shot of Detective Lin CHAR_HERO sitting at a desk in SCENE_STUDY.
 He narrows his eyes slightly, looking at the photo in his hand.
 No motion drift, maintain absolute image stability.
 No subtitles, no captions, clean frame.
 Cinematography style lock: STYLE_BIBLE, STYLE_LOCK.
+[GLOBAL STYLE: 1930s cinematic spy-thriller look, Cooke Panchro prime lens, high-contrast chiaroscuro, desaturated military green and warm amber color grading, faded 1940s film grain, volumetric fog, organic micro dust particles, no game CG look, photo-realistic]
 ```
 
 ### Storyboard Panel 2 (S02 - Close-up)
@@ -324,11 +349,12 @@ Cinematography style lock: STYLE_BIBLE, STYLE_LOCK.
 
 ### Segment 2 Seedance Prompt
 ```text
-0:00 - 0:08: [S02] Extreme close-up of a grandfather clock in SCENE_STUDY.
+0:00 - 0:08: [S02] [GLOBAL STYLE: 1930s cinematic spy-thriller look, Cooke Panchro prime lens, high-contrast chiaroscuro, desaturated military green and warm amber color grading, faded 1940s film grain, volumetric fog, organic micro dust particles, no game CG look, photo-realistic] Extreme close-up of a grandfather clock in SCENE_STUDY.
 Three hands spinning counter-clockwise in a bizarre fashion.
 No hand distortion, ensure mechanical details are stable.
 No subtitles, no captions, clean frame.
 Cinematography style lock: STYLE_BIBLE, STYLE_LOCK.
+[GLOBAL STYLE: 1930s cinematic spy-thriller look, Cooke Panchro prime lens, high-contrast chiaroscuro, desaturated military green and warm amber color grading, faded 1940s film grain, volumetric fog, organic micro dust particles, no game CG look, photo-realistic]
 ```
 """
         else:
@@ -340,23 +366,46 @@ Cinematography style lock: STYLE_BIBLE, STYLE_LOCK.
             prompts_cn = f"""# {title} - Image2 + Seedance 生产提示词 (中文参考版)
 # 画板基底锁定：黑曜石深灰色磨砂质感背景配极细网格线 (Matte Obsidian Slate Gray with minimalist fine grid lines)
 
-## 资产设计提示词
-- **CHAR_HERO** (主角): 主角写实肖像。
-- **SCENE_MAIN** (场景): 主体写实场景。
+> [!WARNING]
+> **操作员切割提醒 (Director Action Notice)**
+> 严禁直接将包含多视图、九宫格、坐标标签、黑底细网格的多面板资产卡整体图喂入 Seedance 2.0 作为 I2V 的参考图。操作员必须：
+> 1. 进行单图裁剪 (Crop Reference)，裁剪出特定 Panel 进行参考；或
+> 2. 直接使用干净的 16:9 无网格故事板分镜作为 I2V 首帧。
 
-## 故事板与分镜视频提示词
-### 分镜 1 视频提示词
+## 资产设计提示词 (Asset Design Prompts)
+- **CHAR_HERO** (主角):
+  - 图像提示词：Cinematic portrait of CHAR_HERO, Matte Obsidian Slate Gray background. Enforce pure English labeling layout only ('Panel A' for front, 'Panel B' for face), no Chinese characters, no garbled letters, no distorted text labels, clean typography.
+- **SCENE_MAIN** (场景):
+  - 图像提示词：Realistic scene of SCENE_MAIN, Matte Obsidian Slate Gray background. Enforce silent grid labels only ('Sector A1', 'Sector B2'), no Chinese text, no garbled letters, clean typography.
+
+### 资产图面标识双语映射表 (Bilingual Structural Mapping Table)
+| 图面标识 (English Label) | 中文释义 (Chinese Translation) | 画面控制要求 (Canvas Control) |
+| :--- | :--- | :--- |
+| `Panel A` | 全身四视图 (4-View Full Body Grid) | 纯英文无网格/正面/侧面/背面 |
+| `Panel B` | 人脸中性特写 (Facial Close-up) | 极其干净的正面肖像，无任何中文字体 |
+| `Sector A1` | 室内布局全景 (Wide View) | 宽视角空间场景 |
+| `Sector B2` | 主定位区 (Main Sector) | 场景核心物理锚点 |
+
+## 故事板与分镜视频提示词 (Storyboard & Seedance Prompts)
+### 分镜 1 Seedance 提示词
 ```text
-0:00 - 0:05: [S01] 主角站立在场景中，向前凝视。
+0:00 - 0:05: [S01] [GLOBAL STYLE: cinematic realistic look, Cooke prime lens, high-contrast chiaroscuro, volumetric fog, no game CG look, photo-realistic] 主角站立在场景中，向前凝视。
 不要字幕，无字幕，影像风格锁：STYLE_BIBLE, STYLE_LOCK.
+[GLOBAL STYLE: cinematic realistic look, Cooke prime lens, high-contrast chiaroscuro, volumetric fog, no game CG look, photo-realistic]
 ```
 """
             prompts_en = f"""# {title} - Image2 + Seedance Production Prompts (English Executable)
 # Storyboard Substrate Solid Lock: Matte Obsidian Slate Gray with minimalist fine grid lines
 
+> [!WARNING]
+> **Director Action Notice**
+> DO NOT feed raw multi-view cards or 9-angle grids into Seedance 2.0. Operators must:
+> 1. Use single panel cropping (Crop Reference) to feed a specific panel; or
+> 2. Use clean, 16:9 gridless storyboard frames as the Seedance I2V reference.
+
 ## Asset Design Prompts
-- **CHAR_HERO**: Cinematic portrait of CHAR_HERO, Matte Obsidian Slate Gray background.
-- **SCENE_MAIN**: Realistic scene of SCENE_MAIN, Matte Obsidian Slate Gray background.
+- **CHAR_HERO**: Cinematic portrait of CHAR_HERO, Matte Obsidian Slate Gray background. Enforce pure English labeling layout only ('Panel A' for front, 'Panel B' for face), no Chinese characters, no garbled letters, no distorted text labels, clean typography.
+- **SCENE_MAIN**: Realistic scene of SCENE_MAIN, Matte Obsidian Slate Gray background. Enforce silent grid labels only ('Sector A1', 'Sector B2'), no Chinese text, no garbled letters, clean typography.
 
 ## Storyboard Prompts + Seedance Prompts
 
@@ -365,10 +414,11 @@ Cinematography style lock: STYLE_BIBLE, STYLE_LOCK.
 
 ### Segment 1 Seedance Prompt
 ```text
-0:00 - 0:05: [S01] CHAR_HERO stands in SCENE_MAIN looking forward.
+0:00 - 0:05: [S01] [GLOBAL STYLE: cinematic realistic look, Cooke prime lens, high-contrast chiaroscuro, volumetric fog, no game CG look, photo-realistic] CHAR_HERO stands in SCENE_MAIN looking forward.
 No motion drift, maintain absolute image stability.
 No subtitles, no captions, clean frame.
 Cinematography style lock: STYLE_BIBLE, STYLE_LOCK.
+[GLOBAL STYLE: cinematic realistic look, Cooke prime lens, high-contrast chiaroscuro, volumetric fog, no game CG look, photo-realistic]
 ```
 """
 
